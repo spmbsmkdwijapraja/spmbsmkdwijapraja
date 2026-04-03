@@ -18,7 +18,7 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
-    alamat: '', desa: '', kecamatan: '', kabupaten: '', kodePos: '',
+    alamat: '', desa: '', kecamatan: '', kabkota: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
@@ -185,7 +185,7 @@ const Register: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
                   <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-                  <FormInput label="Kabupaten" name="kabupaten" value={formData.kabupaten} onChange={handleChange} required />
+                  <FormInput label="Kab/Kota" name="kabkota" value={formData.kabkota} onChange={handleChange} required />
                   <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
                   <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
                   <div className="grid grid-cols-2 gap-4">
