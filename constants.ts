@@ -8,10 +8,11 @@ export const EDUCATIONS = [
 ];
 
 export const JOBS = [
-  'Tidak Bekerja', 'PNS', 'TNI/Polri', 'Pegawai Swasta', 'Wiraswasta', 'Petani/Pekebun', 'Nelayan', 'Buruh', 'Lainnya'
+  'Tidak Bekerja', 'PNS', 'TNI/Polri', 'Pegawai Swasta', 'Wiraswasta', 'Petani/Pekebun', 'Nelayan', 'Buruh', 'Lainnya', 'Meninggal Dunia'
 ];
 
 export const INCOMES = [
+  'Tidak Berpenghasilan'
   'Kurang dari Rp 1.000.000',
   'Rp 1.000.000 - Rp 2.000.000',
   'Rp 2.000.000 - Rp 5.000.000',
@@ -24,7 +25,7 @@ export const FAMILY_STATUSES = [
 
 export const ADMIN_CREDENTIALS = {
   username: 'admin',
-  password: 'admin'
+  password: 'admin0310'
 };
 
 export const MOCK_SCHEDULES: Record<number, string> = {
