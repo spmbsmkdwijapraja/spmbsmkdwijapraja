@@ -38,7 +38,7 @@ const Home: React.FC = () => {
               </span>
             </h2>
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-              Penerimaan Murid Baru Tahun Ajaran 2026/2027 telah dibuka. Daftarkan putra-putri Anda melalui sistem online kami yang terintegrasi dan modern.
+              Sistem Penerimaan Murid Baru Tahun Ajaran 2026/2027 telah dibuka. Daftarkan putra-putri Anda melalui sistem online kami yang terintegrasi dan modern.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-5">
               <Link 
