@@ -18,12 +18,12 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
-    alamat: '', desa: '', kecamatan: '', kabkota: '', kodePos: '',
+    alamat: '', desa: '', kecamatan: '', kabupaten: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     wali: { status: 'Tidak Ada Wali', nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
-    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
+    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahDiniyah: '', kip: '', pkh: '', kks: '', bpjs: '' }
   });
 
   const formatDatePicker = (value: string) => {
@@ -154,10 +154,11 @@ const Register: React.FC = () => {
                   Data Calon Peserta Didik
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                  <FormInput label="NIK" name="nik" type="text" value={formData.nik} onChange={handleChange} required />
-                  <FormInput label="Nomor Telepon" name="telepon" type="text" value={formData.telepon} onChange={handleChange} required />
-                  <FormInput label="Nomor KK" name="nomorKK" type="text" value={formData.nomorKK} onChange={handleChange} required />
-                  <FormInput label="NISN" name="nisn" type="text" value={formData.nisn} onChange={handleChange} required />
+                  <FormInput label="Nama Lengkap" name="nama" value={formData.nama} onChange={handleChange} required />
+                  <FormInput label="NIK" name="nik" type="number" value={formData.nik} onChange={handleChange} required />
+                  <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
+                  <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
+                  <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
                   
                   <div className="grid grid-cols-2 gap-4">
                     <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
@@ -176,7 +177,7 @@ const Register: React.FC = () => {
                   <FormSelect label="Jenis Kelamin" name="jenisKelamin" value={formData.jenisKelamin} onChange={handleChange} options={['Laki-laki', 'Perempuan']} required />
                   <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
                   <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
-                  <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="text" inputMode="numeric" value={formData.npsnSekolah} onChange={handleChange} required />
+                  <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
                 </div>
                 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
@@ -184,12 +185,12 @@ const Register: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
                   <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-                  <FormInput label="Kab/Kota" name="kabkota" value={formData.kabkota} onChange={handleChange} required />
-                  <FormInput label="Kode Pos" name="kodePos" type="text" inputMode="numeric" value={formData.kodePos} onChange={handleChange} required />
+                  <FormInput label="Kabupaten" name="kabupaten" value={formData.kabupaten} onChange={handleChange} required />
+                  <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
                   <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
                   <div className="grid grid-cols-2 gap-4">
-                    <FormInput label="Anak Ke" name="anakKe" type="text" inputMode="numeric" value={formData.anakKe} onChange={handleChange} required />
-                    <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="text" inputMode="numeric" value={formData.jumlahSaudara} onChange={handleChange} required />
+                    <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
+                    <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   </div>
                 </div>
 
@@ -214,11 +215,11 @@ const Register: React.FC = () => {
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                       <FormInput label="Nama Ayah" name="nama" value={formData.ayah.nama} onChange={(e) => handleChange(e, 'ayah')} required />
-                      <FormInput label="NIK Ayah" name="nik" type="text" inputMode="numeric" value={formData.ayah.nik} onChange={(e) => handleChange(e, 'ayah')} required />
+                      <FormInput label="NIK Ayah" name="nik" type="number" value={formData.ayah.nik} onChange={(e) => handleChange(e, 'ayah')} required />
                       <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.ayah.pendidikan} onChange={(e) => handleChange(e, 'ayah')} options={EDUCATIONS} required />
                       <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.ayah.pekerjaan} onChange={(e) => handleChange(e, 'ayah')} options={JOBS} required />
                       <FormSelect label="Penghasilan" name="penghasilan" value={formData.ayah.penghasilan} onChange={(e) => handleChange(e, 'ayah')} options={INCOMES} required />
-                      <FormInput label="Nomor Telepon Ayah" name="telepon" type="text" inputMode="numeric" value={formData.ayah.telepon} onChange={(e) => handleChange(e, 'ayah')} required />
+                      <FormInput label="Nomor Telepon Ayah" name="telepon" type="number" value={formData.ayah.telepon} onChange={(e) => handleChange(e, 'ayah')} required />
                     </div>
                   </div>
 
@@ -229,50 +230,33 @@ const Register: React.FC = () => {
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                       <FormInput label="Nama Ibu" name="nama" value={formData.ibu.nama} onChange={(e) => handleChange(e, 'ibu')} required />
-                      <FormInput label="NIK Ibu" name="nik" type="text" inputMode="numeric" value={formData.ibu.nik} onChange={(e) => handleChange(e, 'ibu')} required />
+                      <FormInput label="NIK Ibu" name="nik" type="number" value={formData.ibu.nik} onChange={(e) => handleChange(e, 'ibu')} required />
                       <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.ibu.pendidikan} onChange={(e) => handleChange(e, 'ibu')} options={EDUCATIONS} required />
                       <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.ibu.pekerjaan} onChange={(e) => handleChange(e, 'ibu')} options={JOBS} required />
                       <FormSelect label="Penghasilan" name="penghasilan" value={formData.ibu.penghasilan} onChange={(e) => handleChange(e, 'ibu')} options={INCOMES} required />
-                      <FormInput label="Nomor Telepon Ibu" name="telepon" type="text" inputMode="numeric" value={formData.ibu.telepon} onChange={(e) => handleChange(e, 'ibu')} required />
+                      <FormInput label="Nomor Telepon Ibu" name="telepon" type="number" value={formData.ibu.telepon} onChange={(e) => handleChange(e, 'ibu')} required />
                     </div>
                   </div>
 
                   <div className="p-6 bg-blue-50/50 rounded-2xl border border-blue-100">
                     <div className="flex items-center mb-6">
                        <input 
-  type="checkbox" 
-  id="checkWali" 
-  className="w-5 h-5 rounded text-blue-600 mr-3" 
-  checked={hasWali} 
-  onChange={(e) => {
-    setHasWali(e.target.checked);
-    setFormData(prev => ({
-      ...prev,
-      wali: {
-        ...(prev.wali || {
-          status: 'Tidak Ada Wali',
-          nama: '',
-          nik: '',
-          pendidikan: '',
-          pekerjaan: '',
-          penghasilan: '',
-          telepon: ''
-        }),
-        status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali'
-      }
-    }));
-  }}
-/>
+                         type="checkbox" id="checkWali" className="w-5 h-5 rounded text-blue-600 mr-3" 
+                         checked={hasWali} onChange={(e) => {
+                            setHasWali(e.target.checked);
+                            setFormData(prev => ({...prev, wali: prev.wali ? {...prev.wali, status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali'} : undefined}));
+                         }}
+                       />
                        <label htmlFor="checkWali" className="font-bold text-slate-800">Gunakan Data Wali (Jika Ada)</label>
                     </div>
                     {hasWali && (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 animate-fadeIn">
-                        <FormInput label="Nama Wali" name="nama" value={formData.wali?.nama || ''} onChange={(e) => handleChange(e, 'wali')} required />
-                        <FormInput label="NIK Wali" name="nik" type="text" inputMode="numeric" value={formData.wali?.nik || ''} onChange={(e) => handleChange(e, 'wali')} required />
-                        <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.wali?.pendidikan || ''} onChange={(e) => handleChange(e, 'wali')} options={EDUCATIONS} required />
-                        <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.wali?.pekerjaan || ''} onChange={(e) => handleChange(e, 'wali')} options={JOBS} required />
-                        <FormSelect label="Penghasilan" name="penghasilan" value={formData.wali?.penghasilan || ''} onChange={(e) => handleChange(e, 'wali')} options={INCOMES} required />
-                        <FormInput label="Nomor Telepon Wali" name="telepon" type="text" inputMode="numeric" value={formData.wali?.telepon || ''} onChange={(e) => handleChange(e, 'wali')} required />
+                        <FormInput label="Nama Wali" name="nama" value={formData.wali?.nama} onChange={(e) => handleChange(e, 'wali')} required />
+                        <FormInput label="NIK Wali" name="nik" type="number" value={formData.wali?.nik} onChange={(e) => handleChange(e, 'wali')} required />
+                        <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.wali?.pendidikan} onChange={(e) => handleChange(e, 'wali')} options={EDUCATIONS} required />
+                        <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.wali?.pekerjaan} onChange={(e) => handleChange(e, 'wali')} options={JOBS} required />
+                        <FormSelect label="Penghasilan" name="penghasilan" value={formData.wali?.penghasilan} onChange={(e) => handleChange(e, 'wali')} options={INCOMES} required />
+                        <FormInput label="Nomor Telepon Wali" name="telepon" type="number" value={formData.wali?.telepon} onChange={(e) => handleChange(e, 'wali')} required />
                       </div>
                     )}
                   </div>
@@ -304,7 +288,7 @@ const Register: React.FC = () => {
                   <div className="col-span-full mt-6">
                     <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Opsional (Jika Ada)</h4>
                   </div>
-                  <FormFile label="Ijazah SMP/Sederajat" fileName={fileNames.ijazahSMPSederajat} isProcessing={fileProcessing.ijazahSMPSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPSederajat')} />
+                  <FormFile label="Ijazah Diniyah" fileName={fileNames.ijazahDiniyah} isProcessing={fileProcessing.ijazahDiniyah} onChange={(e) => handleFileChange(e, 'ijazahDiniyah')} />
                   <FormFile label="Kartu KIP" fileName={fileNames.kip} isProcessing={fileProcessing.kip} onChange={(e) => handleFileChange(e, 'kip')} />
                   <FormFile label="Kartu PKH" fileName={fileNames.pkh} isProcessing={fileProcessing.pkh} onChange={(e) => handleFileChange(e, 'pkh')} />
                   <FormFile label="Kartu KKS" fileName={fileNames.kks} isProcessing={fileProcessing.kks} onChange={(e) => handleFileChange(e, 'kks')} />
