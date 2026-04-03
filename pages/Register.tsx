@@ -154,11 +154,10 @@ const Register: React.FC = () => {
                   Data Calon Peserta Didik
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-                  <FormInput label="Nama Lengkap" name="nama" value={formData.nama} onChange={handleChange} required />
-                  <FormInput label="NIK" name="nik" type="number" value={formData.nik} onChange={handleChange} required />
-                  <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
-                  <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
-                  <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
+                  <FormInput label="NIK" name="nik" type="text" value={formData.nik} onChange={handleChange} required />
+                  <FormInput label="Nomor Telepon" name="telepon" type="text" value={formData.telepon} onChange={handleChange} required />
+                  <FormInput label="Nomor KK" name="nomorKK" type="text" value={formData.nomorKK} onChange={handleChange} required />
+                  <FormInput label="NISN" name="nisn" type="text" value={formData.nisn} onChange={handleChange} required />
                   
                   <div className="grid grid-cols-2 gap-4">
                     <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
