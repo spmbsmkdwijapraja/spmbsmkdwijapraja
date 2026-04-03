@@ -12,7 +12,7 @@ export const JOBS = [
 ];
 
 export const INCOMES = [
-  'Tidak Berpenghasilan'
+  'Tidak Berpenghasilan',
   'Kurang dari Rp 1.000.000',
   'Rp 1.000.000 - Rp 2.000.000',
   'Rp 2.000.000 - Rp 5.000.000',
