@@ -20,7 +20,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
             <Link to="/" className="hover:text-blue-200 transition py-2 flex items-center h-10">Beranda</Link>
-            <Link to="https://bit.ly/spmbsnkdwijapraja" className="bg-blue-600 px-5 py-2.5 rounded-full hover:bg-blue-500 transition shadow-md flex items-center h-10">Daftar Sekarang</Link>
+            <Link to="/https://bit.ly/spmbsnkdwijapraja" className="bg-blue-600 px-5 py-2.5 rounded-full hover:bg-blue-500 transition shadow-md flex items-center h-10">Daftar Sekarang</Link>
           </nav>
         </div>
       </header>
