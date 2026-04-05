@@ -74,16 +74,25 @@ function handleRegistration(data) {
     data.agama,           // 9: Agama
     data.asalSekolah,     // 10: Sekolah Asal
     data.npsnSekolah,     // 11: NPSN Sekolah
-    data.alamat,          // 12: Alamat (Jalan/Dusun)
-    data.desa,            // 13: Desa
-    data.kecamatan,       // 14: Kecamatan
-    data.kabupatenKota,   // 15: Kabupaten/Kota
-    data.kodePos,         // 16: Kode Pos
-    data.statusKeluarga,  // 17: Status dalam Keluarga
-    data.anakKe,          // 18: Anak Ke
-    data.jumlahSaudara,   // 19: Jumlah Saudara
-    data.nomorKK,         // 20: Nomor KK
+    data.tahunLulus,      // 12: Tahun Lulus
+    data.pilihanJurusan1  // 13: Pilihan Jurusan 1
+    data.pilihanJurusan2  // 14: Pilihan Jurusan 2
+    data.alamat,          // 15: Alamat (Jalan/Dusun)
+    data.desa,            // 16: Desa
+    data.kecamatan,       // 17: Kecamatan
+    data.kabupatenKota,   // 18: Kabupaten/Kota
+    data.kodePos,         // 19: Kode Pos
+    data.statusKeluarga,  // 20: Status dalam Keluarga
+    data.anakKe,          // 21: Anak Ke
+    data.jumlahSaudara,   // 22: Jumlah Saudara
+    data.nomorKK,         // 23: Nomor KK
     
+    //DATA JURUSAN
+    data.pilihanJurusan1.dKV
+    data.pilihanJurusan1.tKL
+    data.pilihanJurusan1.tO
+    data.pilihanJurusan1.fPFL
+
     // DATA AYAH (21-26)
     data.ayah.nama, 
     data.ayah.nik, 
@@ -140,6 +149,8 @@ function generatePdf(regNo, data, jadwal, folder) {
       '{{Jenis_Kelamin}}': data.jenisKelamin,
       '{{Nomor_Telepon}}': data.telepon,
       '{{Asal_Sekolah}}': data.asalSekolah,
+      '{{Pilihan_Jurusan_1}}': data.pilihanJurusan1,
+      '{{Pilihan_Jurusan_2}}': data.pilihanJurusan2,
       '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", " + data.kabupatenKota,
       '{{Jadwal_Seleksi}}': jadwal
     };
