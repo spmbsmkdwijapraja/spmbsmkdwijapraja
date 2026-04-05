@@ -75,8 +75,8 @@ const Home: React.FC = () => {
                 <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Mitra Industri & Dunia Usaha</div>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl md:text-4xl font-black">20+</div>
-                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Guru Bersertifikasi</div>
+                <div className="text-3xl md:text-4xl font-black">Rp 0</div>
+                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Bebas Uang Gedung</div>
               </div>
               <div className="space-y-1">
                 <div className="text-3xl md:text-4xl font-black">4</div>
