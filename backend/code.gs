@@ -45,20 +45,18 @@ function handleRegistration(data) {
   const group = Math.floor((nextNumber - 1) / 200) + 1;
   const jadwal = getJadwalKonfigurasi(group);
 
-  // FIX: antisipasi dokumen undefined
-  const dokumen = data.dokumen || {};
-
+  // Upload berkas (Wajib & Opsional)
   const docLinks = {};
-  const allFiles = ['akta', 'kk', 'nisn', 'rapor', 'ijazahSMPMTsSederajat', 'kip', 'pkh', 'kks', 'bpjs'];
-
+  const allFiles = ['akta', 'kk', 'nisn', 'rapor', 'ijazahSMPSederajat', 'kip', 'pkh', 'kks', 'bpjs'];
   allFiles.forEach(key => {
-    if (dokumen[key] && dokumen[key].includes('base64,')) {
-      docLinks[key] = uploadBase64File(dokumen[key], key.toUpperCase() + "-" + data.nama.toUpperCase(), folder);
+    if (data.dokumen[key] && data.dokumen[key].includes('base64,')) {
+      docLinks[key] = uploadBase64File(data.dokumen[key], key.toUpperCase() + "-" + data.nama.toUpperCase(), folder);
     } else {
       docLinks[key] = "";
     }
   });
 
+  // Generate PDF
   const pdfUrl = generatePdf(regNo, data, jadwal, folder);
 
   const rowData = [
@@ -76,7 +74,7 @@ function handleRegistration(data) {
     data.npsnSekolah,
     data.tahunLulus,
     data.pilihanJurusan1,
-    data.pilihanJurusan2,
+    data.pilihanJurusan2, // ✅ FIX koma
 
     data.alamat,
     data.desa,
