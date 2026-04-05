@@ -219,7 +219,6 @@ const Register: React.FC = () => {
                 </div>
 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
-                  {/* ✅ FIX: Typo "Desan" -> "Desain" */}
                   <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={['Desain Komunikasi Visual (DKV)', 'Teknik Ketenagalistrikan (TKL)', 'Teknik Otomotif (TO)', 'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
                   <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={['Desain Komunikasi Visual (DKV)', 'Teknik Ketenagalistrikan (TKL)', 'Teknik Otomotif (TO)', 'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
                                   
