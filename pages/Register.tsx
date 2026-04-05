@@ -181,7 +181,6 @@ const Register: React.FC = () => {
                   <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
                                     
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
-                  <div className="space-y-4">
                   <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
                   'Teknik Ketenagalistrikan (TKL)', 
@@ -193,8 +192,7 @@ const Register: React.FC = () => {
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
                    </div> 
-                  </div>
-                
+                                  
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
                 <FormInput label="Alamat (Jalan/Dusun)" name="alamat" value={formData.alamat} onChange={handleChange} required type="textarea" rows={2} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
