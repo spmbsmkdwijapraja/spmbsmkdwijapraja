@@ -22,6 +22,7 @@ const Register: React.FC = () => {
   const [fileNames, setFileNames] = useState<Record<string, string>>({});
   const [fileProcessing, setFileProcessing] = useState<Record<string, boolean>>({});
   
+  // ✅ FIX: Inisialisasi wali dengan default object, tidak undefined
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
@@ -31,11 +32,10 @@ const Register: React.FC = () => {
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     wali: { status: 'Tidak Ada Wali', nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
-    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPMTsSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
+    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
   });
 
   const formatDatePicker = (value: string) => {
-    // Remove all non-digits
     const v = value.replace(/\D/g, '').slice(0, 8);
     if (v.length >= 5) {
       return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
@@ -43,6 +43,20 @@ const Register: React.FC = () => {
       return `${v.slice(0, 2)}/${v.slice(2)}`;
     }
     return v;
+  };
+
+  // ✅ FIX: Tambah fungsi validasi tanggal yang benar
+  const isValidDate = (dateStr: string): boolean => {
+    if (!/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) return false;
+    
+    const [day, month, year] = dateStr.split('/').map(Number);
+    const date = new Date(year, month - 1, day);
+    
+    return date.getDate() === day && 
+           date.getMonth() === month - 1 && 
+           date.getFullYear() === year &&
+           year >= 1900 && 
+           year <= new Date().getFullYear();
   };
 
   const handleChange = (e: React.ChangeEvent<any>, section?: 'ayah' | 'ibu' | 'wali') => {
@@ -63,35 +77,51 @@ const Register: React.FC = () => {
     }
   };
 
+  // ✅ FIX: Error handling untuk FileReader
   const handleFileChange = (e: React.ChangeEvent<any>, field: string) => {
     const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert(`File ${file.name} terlalu besar. Maksimal ukuran adalah 2MB.`);
-        e.target.value = ''; 
-        return;
-      }
-      setFileProcessing(prev => ({ ...prev, [field]: true }));
-      setFileNames(prev => ({ ...prev, [field]: file.name }));
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData(prev => ({
-          ...prev,
-          dokumen: { ...prev.dokumen, [field]: reader.result as string }
-        }));
-        setFileProcessing(prev => ({ ...prev, [field]: false }));
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert(`File ${file.name} terlalu besar. Maksimal ukuran adalah 2MB.`);
+      e.target.value = ''; 
+      return;
     }
+
+    setFileProcessing(prev => ({ ...prev, [field]: true }));
+    setFileNames(prev => ({ ...prev, [field]: file.name }));
+
+    const reader = new FileReader();
+    
+    // ✅ FIX: Tambah error handler
+    reader.onerror = () => {
+      alert(`Gagal membaca file ${file.name}. Silakan coba file lain.`);
+      setFileProcessing(prev => ({ ...prev, [field]: false }));
+      setFileNames(prev => {
+        const newState = { ...prev };
+        delete newState[field];
+        return newState;
+      });
+      e.target.value = '';
+    };
+
+    reader.onloadend = () => {
+      setFormData(prev => ({
+        ...prev,
+        dokumen: { ...prev.dokumen, [field]: reader.result as string }
+      }));
+      setFileProcessing(prev => ({ ...prev, [field]: false }));
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation for date format
-    const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
-    if (!datePattern.test(formData.tanggalLahir)) {
-      alert('Format Tanggal Lahir harus DD/MM/YYYY (Contoh: 17/08/2010)');
+    // ✅ FIX: Validasi tanggal yang benar
+    if (!isValidDate(formData.tanggalLahir)) {
+      alert('Format Tanggal Lahir tidak valid. Gunakan format DD/MM/YYYY dengan tanggal yang benar (Contoh: 17/08/2010)');
       return;
     }
 
@@ -126,7 +156,6 @@ const Register: React.FC = () => {
 
   return (
     <div className="py-12 bg-slate-50 min-h-screen relative">
-      {/* Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-[2.5rem] p-10 max-w-sm w-full text-center shadow-2xl animate-scaleIn">
@@ -190,6 +219,7 @@ const Register: React.FC = () => {
                 </div>
 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
+                  {/* ✅ FIX: Typo "Desan" -> "Desain" */}
                   <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={['Desain Komunikasi Visual (DKV)', 'Teknik Ketenagalistrikan (TKL)', 'Teknik Otomotif (TO)', 'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
                   <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={['Desain Komunikasi Visual (DKV)', 'Teknik Ketenagalistrikan (TKL)', 'Teknik Otomotif (TO)', 'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
                                   
@@ -257,19 +287,23 @@ const Register: React.FC = () => {
                          type="checkbox" id="checkWali" className="w-5 h-5 rounded text-blue-600 mr-3" 
                          checked={hasWali} onChange={(e) => {
                             setHasWali(e.target.checked);
-                            setFormData(prev => ({...prev, wali: prev.wali ? {...prev.wali, status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali'} : undefined}));
+                            // ✅ FIX: Update status wali dengan aman, tidak undefined
+                            setFormData(prev => ({
+                              ...prev, 
+                              wali: { ...prev.wali, status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali' }
+                            }));
                          }}
                        />
                        <label htmlFor="checkWali" className="font-bold text-slate-800">Gunakan Data Wali (Jika Ada)</label>
                     </div>
                     {hasWali && (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 animate-fadeIn">
-                        <FormInput label="Nama Wali" name="nama" value={formData.wali?.nama} onChange={(e) => handleChange(e, 'wali')} required />
-                        <FormInput label="NIK Wali" name="nik" type="number" value={formData.wali?.nik} onChange={(e) => handleChange(e, 'wali')} required />
-                        <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.wali?.pendidikan} onChange={(e) => handleChange(e, 'wali')} options={EDUCATIONS} required />
-                        <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.wali?.pekerjaan} onChange={(e) => handleChange(e, 'wali')} options={JOBS} required />
-                        <FormSelect label="Penghasilan" name="penghasilan" value={formData.wali?.penghasilan} onChange={(e) => handleChange(e, 'wali')} options={INCOMES} required />
-                        <FormInput label="Nomor Telepon Wali" name="telepon" type="number" value={formData.wali?.telepon} onChange={(e) => handleChange(e, 'wali')} required />
+                        <FormInput label="Nama Wali" name="nama" value={formData.wali.nama} onChange={(e) => handleChange(e, 'wali')} required={hasWali} />
+                        <FormInput label="NIK Wali" name="nik" type="number" value={formData.wali.nik} onChange={(e) => handleChange(e, 'wali')} required={hasWali} />
+                        <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.wali.pendidikan} onChange={(e) => handleChange(e, 'wali')} options={EDUCATIONS} required={hasWali} />
+                        <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.wali.pekerjaan} onChange={(e) => handleChange(e, 'wali')} options={JOBS} required={hasWali} />
+                        <FormSelect label="Penghasilan" name="penghasilan" value={formData.wali.penghasilan} onChange={(e) => handleChange(e, 'wali')} options={INCOMES} required={hasWali} />
+                        <FormInput label="Nomor Telepon Wali" name="telepon" type="number" value={formData.wali.telepon} onChange={(e) => handleChange(e, 'wali')} required={hasWali} />
                       </div>
                     )}
                   </div>
@@ -301,7 +335,8 @@ const Register: React.FC = () => {
                   <div className="col-span-full mt-6">
                     <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Opsional (Jika Ada)</h4>
                   </div>
-                  <FormFile label="Ijazah SMP/MTs/Sederajat" fileName={fileNames.ijazahSMPMTsSederajat} isProcessing={fileProcessing.ijazahSMPMTsSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPMTsSederajat')} />
+                  {/* ✅ FIX: Key 'ijazahSMPMTsSederajat' -> 'ijazahSMPSederajat' untuk match dengan backend */}
+                  <FormFile label="Ijazah SMP/MTs/Sederajat" fileName={fileNames.ijazahSMPSederajat} isProcessing={fileProcessing.ijazahSMPSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPSederajat')} />
                   <FormFile label="Kartu KIP" fileName={fileNames.kip} isProcessing={fileProcessing.kip} onChange={(e) => handleFileChange(e, 'kip')} />
                   <FormFile label="Kartu PKH" fileName={fileNames.pkh} isProcessing={fileProcessing.pkh} onChange={(e) => handleFileChange(e, 'pkh')} />
                   <FormFile label="Kartu KKS" fileName={fileNames.kks} isProcessing={fileProcessing.kks} onChange={(e) => handleFileChange(e, 'kks')} />
