@@ -179,7 +179,6 @@ const Register: React.FC = () => {
                   <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
                   <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
                   <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
-                  // Di bagian Step 1, perbaiki options:
                   <FormSelect   label="Jurusan ke-1"   name="pilihanJurusan1"   value={formData.pilihanJurusan1}   onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
                   'Teknik Ketenagalistrikan (TKL)', 
