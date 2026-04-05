@@ -3,13 +3,6 @@ export const RELIGIONS = [
   'Islam', 'Kristen Protestan', 'Kristen Katolik', 'Hindu', 'Buddha', 'Khonghucu'
 ];
 
-export const MAJOR = [
-  'Desain Komunikasi Visual (DKV)',        // ✅ Perhatikan ejaan "Desain"
-  'Teknik Ketenagalistrikan (TKL)',
-  'Teknik Otomotif (TO)',
-  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-];
-
 export const EDUCATIONS = [
   'Tidak Sekolah', 'SD/MI', 'SMP/MTs', 'SMA/MA/SMK', 'D1', 'D2', 'D3', 'D4/S1', 'S2', 'S3'
 ];
@@ -19,7 +12,6 @@ export const JOBS = [
 ];
 
 export const INCOMES = [
-  'Tidak Berpenghasilan',
   'Kurang dari Rp 1.000.000',
   'Rp 1.000.000 - Rp 2.000.000',
   'Rp 2.000.000 - Rp 5.000.000',
@@ -32,7 +24,7 @@ export const FAMILY_STATUSES = [
 
 export const ADMIN_CREDENTIALS = {
   username: 'admin',
-  password: 'admin0310'
+  password: 'admin'
 };
 
 export const MOCK_SCHEDULES: Record<number, string> = {
