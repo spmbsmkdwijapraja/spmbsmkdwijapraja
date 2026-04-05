@@ -18,7 +18,7 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
-    pilihanJurusan1: 'Pilih jurusan yang kamu minati', pilihanJurusan2: 'Tidak boleh sama dengan Pilihan Jurusan 1',
+    tahunLulus: '', pilihanJurusan1: 'Pilih jurusan yang kamu minati', pilihanJurusan2: 'Tidak boleh sama dengan Pilihan Jurusan 1',
     alamat: '', desa: '', kecamatan: '', kabupatenKota: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
@@ -179,6 +179,7 @@ const Register: React.FC = () => {
                   <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
                   <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
                   <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
+                  <FormInput label="Tahun Lulus" name="tahunLulus" type="number" value={formData.tahunLulus} onChange={handleChange} required />
                 </div>
 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
