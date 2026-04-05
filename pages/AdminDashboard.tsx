@@ -139,6 +139,8 @@ const AdminDashboard: React.FC = () => {
                     <th className="px-8 py-6">No. Daftar</th>
                     <th className="px-8 py-6">Nama Lengkap</th>
                     <th className="px-8 py-6">Asal Sekolah</th>
+                    <th className="px-8 py-6">Jurusan 1</th>      // ✅ Tambah
+                    <th className="px-8 py-6">Jurusan 2</th>
                     <th className="px-8 py-6">Jadwal Seleksi</th>
                     <th className="px-8 py-6 text-center">Aksi</th>
                   </tr>
@@ -161,6 +163,8 @@ const AdminDashboard: React.FC = () => {
                         <div className="text-[10px] text-slate-400 font-medium uppercase mt-0.5 tracking-tighter">NIK: {item.nik}</div>
                       </td>
                       <td className="px-8 py-6 text-slate-500 font-medium">{item.asalSekolah}</td>
+                      <td>{item.pilihanJurusan1}</td>    // ✅ Tambah
+                      <td>{item.pilihanJurusan2}</td>    // ✅ Tambah
                       <td className="px-8 py-6">
                          <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black border border-blue-100 uppercase">
                            {item.jadwalSeleksi}
