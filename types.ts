@@ -22,12 +22,12 @@ export interface StudentRegistration {
   asalSekolah: string;
   npsnSekolah: string;
   tahunLulus: string;
-
   pilihanJurusan1: string;
   pilihanJurusan2: string;
-
   alamat: string;
   desa: string;
+  rT: string;
+  rW: string;
   kecamatan: string;
   kabupatenKota: string;
   kodePos: string;
