@@ -33,7 +33,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
-              <h3 className="text-white font-semibold mb-4 text-lg">SPMB SMK Dwija Praja</h3>
+              <h3 className="text-white font-semibold mb-4 text-lg">SPMB Online</h3>
               <p className="text-sm leading-relaxed">
                 Pendaftaran online terintegrasi untuk calon peserta didik baru. 
                 Mudah, Cepat dan Transparan. Seluruh data disimpan dengan aman sesuai dengan standar prosedur operasional.
