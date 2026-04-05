@@ -7,10 +7,10 @@ import { api } from '../services/api';
 import { StudentRegistration } from '../types';
 
 const MAJOR = [
-  "DKN",
-  "TKL",
-  "TO",
-  "TPFL"
+  "Desain Komunikasi Visual (DKV)",
+  "Teknik Ketenagalistrikan (TKL)",
+  "Teknik Otomotif (TO)",
+  "Teknik Pengelasan dan Fabrikasi Logam (TPFL)"
 ];
 
 const Register: React.FC = () => {
