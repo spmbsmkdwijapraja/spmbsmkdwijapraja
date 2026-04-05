@@ -74,8 +74,13 @@ function handleRegistration(data) {
     data.agama,           // 9: Agama
     data.asalSekolah,     // 10: Sekolah Asal
     data.npsnSekolah,     // 11: NPSN Sekolah
+    data.tahunLulus,
+    data.pilihanJurusan1,    // ✅ Sudah ada (pastikan urutan)
+    data.pilihanJurusan2,
     data.alamat,          // 12: Alamat (Jalan/Dusun)
     data.desa,            // 13: Desa
+    data.rt,                 // ✅ Tambah ini
+    data.rw,
     data.kecamatan,       // 14: Kecamatan
     data.kabupaten,       // 15: Kabupaten
     data.kodePos,         // 16: Kode Pos
