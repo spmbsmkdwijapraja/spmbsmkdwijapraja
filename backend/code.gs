@@ -140,7 +140,7 @@ function generatePdf(regNo, data, jadwal, folder) {
       '{{Jenis_Kelamin}}': data.jenisKelamin,
       '{{Nomor_Telepon}}': data.telepon,
       '{{Asal_Sekolah}}': data.asalSekolah,
-      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", Kab. " + data.kabupaten,
+      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", " + data.kabupaten,
       '{{Jadwal_Seleksi}}': jadwal
     };
 
