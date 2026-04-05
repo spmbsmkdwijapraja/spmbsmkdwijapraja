@@ -1,35 +1,49 @@
 
 export const RELIGIONS = [
-  'Islam', 'Kristen Protestan', 'Kristen Katolik', 'Hindu', 'Buddha', 'Khonghucu'
+  'Islam', 
+  'Kristen Protestan', 
+  'Kristen Katolik', 
+  'Hindu', 
+  'Buddha', 
+  'Khonghucu'
 ];
 
-export const EDUCATIONS = [
-  'Tidak Sekolah', 'SD/MI', 'SMP/MTs', 'SMA/MA/SMK', 'D1', 'D2', 'D3', 'D4/S1', 'S2', 'S3'
+export const JURUSAN = [
+  'Desain Komunikasi Visual (DKV)',
+  'Teknik Ketenagalistrikan (TKL)',
+  'Teknik Otomotif (TO)',
+  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
 ];
 
-export const JOBS = [
-  'Tidak Bekerja', 'PNS', 'TNI/Polri', 'Pegawai Swasta', 'Wiraswasta', 'Petani/Pekebun', 'Nelayan', 'Buruh', 'Lainnya', 'Meninggal Dunia'
+export const SUMBER_INFORMASI = [
+  'Media Sosial',
+  'Radio',
+  'Koran/Majalah',
+  'Sosialisasi SMK ke SMP/MTs/Sederajat',
+  'Teman/Saudara/Kerabat',
+  'Petugas datang ke rumah'
 ];
 
-export const INCOMES = [
-  'Tidak Berpenghasilan',
-  'Kurang dari Rp 1.000.000',
-  'Rp 1.000.000 - Rp 2.000.000',
-  'Rp 2.000.000 - Rp 5.000.000',
-  'Lebih dari Rp 5.000.000'
+export const PETUGAS_PENDAFTARAN = [
+  'Petugas 1',
+  'Petugas 2',
+  'Petugas 3'
 ];
 
-export const FAMILY_STATUSES = [
-  'Anak Kandung', 'Anak Angkat', 'Anak Tiri'
+export const JENIS_KELAMIN = [
+  'Laki-laki',
+  'Perempuan'
+];
+
+export const TAHUN_LULUS = [
+  '2026',
+  '2025',
+  '2024',
+  '2023',
+  'Lainnya'
 ];
 
 export const ADMIN_CREDENTIALS = {
   username: 'admin',
-  password: 'admin0310'
-};
-
-export const MOCK_SCHEDULES: Record<number, string> = {
-  1: "Senin, 13 Juli 2026 - 08:00 WIB",
-  2: "Selasa, 14 Juli 2026 - 08:00 WIB",
-  3: "Rabu, 15 Juli 2026 - 08:00 WIB"
+  password: 'admin'
 };
