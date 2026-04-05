@@ -15,7 +15,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight">SPMB SMK DWIJA PRAJA</h1>
-              <p className="text-xs text-blue-200 tracking-widest">Sistem Penerimaan Murid Baru</p>
+              <p className="text-xs text-blue-200-bolt tracking-widest">Sistem Penerimaan Murid Baru</p>
             </div>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
