@@ -117,7 +117,7 @@ const AdminDashboard: React.FC = () => {
                  Jadwal seleksi sekarang diatur langsung melalui kode backend script. Seluruh data pendaftar dan link PDF dapat diakses melalui tombol di bawah ini.
                </p>
                <div className="flex gap-4">
-                  <a href="https://docs.google.com/spreadsheets/d/1D_GopWMIf7qdvOy9JIhm872d5DZBmXJMupLTULGdmFw/edit" target="_blank" rel="noreferrer" className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow-lg flex items-center gap-3">
+                  <a href="https://docs.google.com/spreadsheets/d/17_33_slf7dnusMRILQJT54vk5y_1Y126a23PsWa6SHc/edit" target="_blank" rel="noreferrer" className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow-lg flex items-center gap-3">
                     Buka Spreadsheet
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                   </a>
