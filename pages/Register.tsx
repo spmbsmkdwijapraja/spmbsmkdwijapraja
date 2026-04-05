@@ -184,6 +184,7 @@ const Register: React.FC = () => {
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
                   <FormSelect label="{Pilihan Jurusan 1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={MAJOR} required />
                   <FormSelect label="{Pilihan Jurusan 2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={MAJOR} required />
+                </div>
                 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
                 <FormInput label="Alamat (Jalan/Dusun)" name="alamat" value={formData.alamat} onChange={handleChange} required type="textarea" rows={2} />
