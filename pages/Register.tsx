@@ -180,7 +180,7 @@ const Register: React.FC = () => {
                   <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
                   <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
                   <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
-                  <FormSelect   label="Jurusan ke-1"   name="pilihanJurusan1"   value={formData.pilihanJurusan1}   onChange={handleChange} options={MAJORS} required />
+                  <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={MAJORS} required />
                   <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={MAJORS} required />
                   </div>
                 
