@@ -1,7 +1,7 @@
 
 import { StudentRegistration } from '../types';
 
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // Ganti dengan URL GAS Anda
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzdRs6HeDFo6WFtZauUISfXOW1l1E-XKjC4duyyvoqFxzjFM0E6L3cH6tAQ64-UY3I-/exec'; // Ganti dengan URL GAS Anda
 
 export const submitRegistration = async (data: StudentRegistration): Promise<void> => {
   const payload = [
