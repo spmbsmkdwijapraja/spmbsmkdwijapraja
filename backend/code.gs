@@ -1,7 +1,6 @@
 
 /**
  * BACKEND GOOGLE APPS SCRIPT (SPMB INTEGRATION)
- * Masukkan kode ini di Extensions > Apps Script pada Google Spreadsheet Anda.
  */
 
 const SPREADSHEET_ID = '17_33_slf7dnusMRILQJT54vk5y_1Y126a23PsWa6SHc';
@@ -46,54 +45,50 @@ function handleRegistration(data) {
   const group = Math.floor((nextNumber - 1) / 200) + 1;
   const jadwal = getJadwalKonfigurasi(group);
 
-  // Upload berkas (Wajib & Opsional)
+  // FIX: antisipasi dokumen undefined
+  const dokumen = data.dokumen || {};
+
   const docLinks = {};
   const allFiles = ['akta', 'kk', 'nisn', 'rapor', 'ijazahSMPMTsSederajat', 'kip', 'pkh', 'kks', 'bpjs'];
+
   allFiles.forEach(key => {
-    if (data.dokumen[key] && data.dokumen[key].includes('base64,')) {
-      docLinks[key] = uploadBase64File(data.dokumen[key], key.toUpperCase() + "-" + data.nama.toUpperCase(), folder);
+    if (dokumen[key] && dokumen[key].includes('base64,')) {
+      docLinks[key] = uploadBase64File(dokumen[key], key.toUpperCase() + "-" + data.nama.toUpperCase(), folder);
     } else {
       docLinks[key] = "";
     }
   });
 
-  // Generate PDF
   const pdfUrl = generatePdf(regNo, data, jadwal, folder);
 
-  // Menyusun baris LENGKAP (Total seluruh field di Form)
   const rowData = [
-    new Date(),           // 0: Timestamp
-    regNo,                // 1: No Pendaftaran
-    data.nama,            // 2: Nama Siswa
-    data.nik,             // 3: NIK Siswa
-    data.nisn,            // 4: NISN Siswa
-    data.telepon,         // 5: Telepon Siswa
-    data.tempatLahir,     // 6: Tempat Lahir Siswa
-    data.tanggalLahir,    // 7: Tanggal Lahir Siswa
-    data.jenisKelamin,    // 8: Jenis Kelamin
-    data.agama,           // 9: Agama
-    data.asalSekolah,     // 10: Sekolah Asal
-    data.npsnSekolah,     // 11: NPSN Sekolah
-    data.tahunLulus,      // 12: Tahun Lulus
-    data.pilihanJurusan1  // 13: Pilihan Jurusan 1
-    data.pilihanJurusan2  // 14: Pilihan Jurusan 2
-    data.alamat,          // 15: Alamat (Jalan/Dusun)
-    data.desa,            // 16: Desa
-    data.kecamatan,       // 17: Kecamatan
-    data.kabupatenKota,   // 18: Kabupaten/Kota
-    data.kodePos,         // 19: Kode Pos
-    data.statusKeluarga,  // 20: Status dalam Keluarga
-    data.anakKe,          // 21: Anak Ke
-    data.jumlahSaudara,   // 22: Jumlah Saudara
-    data.nomorKK,         // 23: Nomor KK
-    
-    //DATA JURUSAN
-    data.pilihanJurusan1.dKV
-    data.pilihanJurusan1.tKL
-    data.pilihanJurusan1.tO
-    data.pilihanJurusan1.fPFL
+    new Date(),
+    regNo,
+    data.nama,
+    data.nik,
+    data.nisn,
+    data.telepon,
+    data.tempatLahir,
+    data.tanggalLahir,
+    data.jenisKelamin,
+    data.agama,
+    data.asalSekolah,
+    data.npsnSekolah,
+    data.tahunLulus,
+    data.pilihanJurusan1,
+    data.pilihanJurusan2, // ✅ FIX koma
 
-    // DATA AYAH (21-26)
+    data.alamat,
+    data.desa,
+    data.kecamatan,
+    data.kabupatenKota,
+    data.kodePos,
+    data.statusKeluarga,
+    data.anakKe,
+    data.jumlahSaudara,
+    data.nomorKK,
+
+    // AYAH
     data.ayah.nama, 
     data.ayah.nik, 
     data.ayah.pendidikan, 
@@ -101,7 +96,7 @@ function handleRegistration(data) {
     data.ayah.penghasilan, 
     data.ayah.telepon,
     
-    // DATA IBU (27-32)
+    // IBU
     data.ibu.nama, 
     data.ibu.nik, 
     data.ibu.pendidikan, 
@@ -109,7 +104,7 @@ function handleRegistration(data) {
     data.ibu.penghasilan, 
     data.ibu.telepon,
     
-    // DATA WALI (33-38)
+    // WALI
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.nama : "-", 
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.nik : "-", 
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.pendidikan : "-", 
@@ -117,11 +112,18 @@ function handleRegistration(data) {
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.penghasilan : "-", 
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.telepon : "-",
     
-    jadwal, // 39
-    pdfUrl, // 40
+    jadwal,
+    pdfUrl,
     
-    // DOKUMEN (41-49)
-    docLinks.akta, docLinks.kk, docLinks.nisn, docLinks.rapor, docLinks.ijazahSMPMTsSederajat, docLinks.kip, docLinks.pkh, docLinks.kks, docLinks.bpjs
+    docLinks.akta,
+    docLinks.kk,
+    docLinks.nisn,
+    docLinks.rapor,
+    docLinks.ijazahSMPMTsSederajat,
+    docLinks.kip,
+    docLinks.pkh,
+    docLinks.kks,
+    docLinks.bpjs
   ];
   
   sheet.appendRow(rowData);
@@ -131,83 +133,4 @@ function handleRegistration(data) {
     jadwalSeleksi: jadwal,
     pdfUrl: pdfUrl
   });
-}
-
-function generatePdf(regNo, data, jadwal, folder) {
-  try {
-    const templateFile = DriveApp.getFileById(TEMPLATE_DOC_ID);
-    const copy = templateFile.makeCopy("BUKTI-" + regNo + "-" + data.nama.toUpperCase(), folder);
-    const doc = DocumentApp.openById(copy.getId());
-    const body = doc.getBody();
-
-    const replacements = {
-      '{{Nomor_Pendaftaran}}': regNo,
-      '{{Nama}}': data.nama,
-      '{{NIK}}': data.nik,
-      '{{NISN}}': data.nisn,
-      '{{Tempat_Tanggal_Lahir}}': data.tempatLahir + ", " + data.tanggalLahir,
-      '{{Jenis_Kelamin}}': data.jenisKelamin,
-      '{{Nomor_Telepon}}': data.telepon,
-      '{{Asal_Sekolah}}': data.asalSekolah,
-      '{{Tahun_Lulus}}': data.tahunLulus,
-      '{{Pilihan_Jurusan_1}}': data.pilihanJurusan1,
-      '{{Pilihan_Jurusan_2}}': data.pilihanJurusan2,
-      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", " + data.kabupatenKota,
-      '{{Jadwal_Seleksi}}': jadwal
-    };
-
-    for (let key in replacements) {
-      body.replaceText(key, replacements[key]);
-    }
-
-    doc.saveAndClose();
-    const pdf = copy.getAs(MimeType.PDF);
-    const pdfFile = folder.createFile(pdf);
-    pdfFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-    copy.setTrashed(true);
-    return pdfFile.getUrl();
-  } catch (e) {
-    return "Error PDF: " + e.toString();
-  }
-}
-
-function uploadBase64File(base64Data, fileName, folder) {
-  try {
-    const splitData = base64Data.split(',');
-    const contentType = splitData[0].match(/:(.*?);/)[1];
-    const byteData = Utilities.base64Decode(splitData[1]);
-    const blob = Utilities.newBlob(byteData, contentType, fileName);
-    const file = folder.createFile(blob);
-    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-    return file.getUrl();
-  } catch (e) {
-    return "Error Upload: " + e.toString();
-  }
-}
-
-function getRegistrations() {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  const sheet = ss.getSheets()[0];
-  const data = sheet.getDataRange().getValues();
-  // Pemetaan index disesuaikan dengan urutan rowData baru
-  const list = data.slice(1).map((row, i) => ({
-    id: i,
-    nomorPendaftaran: row[1],
-    nama: row[2],
-    nik: row[3],
-    nisn: row[4],
-    telepon: row[5],
-    asalSekolah: row[10],
-    jadwalSeleksi: row[39], 
-    pdfUrl: row[40]
-  }));
-  return responseSuccess({ list });
-}
-
-function responseSuccess(data) {
-  return ContentService.createTextOutput(JSON.stringify({ success: true, ...data })).setMimeType(ContentService.MimeType.JSON);
-}
-
-function responseError(msg) {
-  return ContentService.createTextOutput(JSON.stringify({ success: false, error: msg })).setMimeType(ContentService.MimeType.JSON);
 }
