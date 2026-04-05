@@ -23,7 +23,7 @@ const Register: React.FC = () => {
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     wali: { status: 'Tidak Ada Wali', nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
-    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
+    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPMTsSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
   });
 
   const formatDatePicker = (value: string) => {
@@ -288,7 +288,7 @@ const Register: React.FC = () => {
                   <div className="col-span-full mt-6">
                     <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Opsional (Jika Ada)</h4>
                   </div>
-                  <FormFile label="Ijazah SMP/Sederajat" fileName={fileNames.ijazahSMPSederajat} isProcessing={fileProcessing.ijazahSMPSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPSederajat')} />
+                  <FormFile label="Ijazah SMP/MTs/Sederajat" fileName={fileNames.ijazahSMPMTsSederajat} isProcessing={fileProcessing.ijazahSMPMTsSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPMTsSederajat')} />
                   <FormFile label="Kartu KIP" fileName={fileNames.kip} isProcessing={fileProcessing.kip} onChange={(e) => handleFileChange(e, 'kip')} />
                   <FormFile label="Kartu PKH" fileName={fileNames.pkh} isProcessing={fileProcessing.pkh} onChange={(e) => handleFileChange(e, 'pkh')} />
                   <FormFile label="Kartu KKS" fileName={fileNames.kks} isProcessing={fileProcessing.kks} onChange={(e) => handleFileChange(e, 'kks')} />
