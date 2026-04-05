@@ -21,33 +21,26 @@ export interface StudentRegistration {
   agama: string;
   asalSekolah: string;
   npsnSekolah: string;
-  tahunLulus: string;
-  pilihanJurusan1: string;
-  pilihanJurusan2: string;
   alamat: string;
   desa: string;
-  rT: string;
-  rW: string;
   kecamatan: string;
-  kabupatenKota: string;
+  kabupaten: string;
   kodePos: string;
   statusKeluarga: string;
   anakKe: string;
   jumlahSaudara: string;
   nomorKK: string;
-
+  
   ayah: ParentData;
   ibu: ParentData;
-  // ✅ FIX: Wali tidak optional, tapi status yang menentukan ada/tidak
-  wali: ParentData & { status: 'Ada Wali' | 'Tidak Ada Wali' };
-
+  wali?: ParentData & { status: 'Ada Wali' | 'Tidak Ada Wali' };
+  
   dokumen: {
-    akta: string;
+    akta: string; // Base64
     kk: string;
     nisn: string;
     rapor: string;
-    // ✅ FIX: Key konsisten dengan backend GAS
-    ijazahSMPSederajat?: string;
+    ijazahDiniyah?: string;
     kip?: string;
     pkh?: string;
     kks?: string;
@@ -61,7 +54,7 @@ export interface StudentRegistration {
 
 export interface ScheduleSetting {
   id: string;
-  groupNumber: number;
+  groupNumber: number; // 1 for first 200, 2 for next 200...
   date: string;
   location: string;
 }
