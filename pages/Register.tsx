@@ -18,12 +18,12 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
-    alamat: '', desa: '', kecamatan: '', kabupaten: '', kodePos: '',
+    alamat: '', desa: '', kecamatan: '', kabupatenKota: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     wali: { status: 'Tidak Ada Wali', nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
-    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahDiniyah: '', kip: '', pkh: '', kks: '', bpjs: '' }
+    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPMTsSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
   });
 
   const formatDatePicker = (value: string) => {
@@ -185,7 +185,7 @@ const Register: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
                   <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-                  <FormInput label="Kabupaten" name="kabupaten" value={formData.kabupaten} onChange={handleChange} required />
+                  <FormInput label="Kabupaten/Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
                   <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
                   <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
                   <div className="grid grid-cols-2 gap-4">
@@ -288,7 +288,7 @@ const Register: React.FC = () => {
                   <div className="col-span-full mt-6">
                     <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Opsional (Jika Ada)</h4>
                   </div>
-                  <FormFile label="Ijazah Diniyah" fileName={fileNames.ijazahDiniyah} isProcessing={fileProcessing.ijazahDiniyah} onChange={(e) => handleFileChange(e, 'ijazahDiniyah')} />
+                  <FormFile label="Ijazah SMP/MTs/Sederajat" fileName={fileNames.ijazahSMPMTsSederajat} isProcessing={fileProcessing.ijazahSMPMTsSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPMTsSederajat')} />
                   <FormFile label="Kartu KIP" fileName={fileNames.kip} isProcessing={fileProcessing.kip} onChange={(e) => handleFileChange(e, 'kip')} />
                   <FormFile label="Kartu PKH" fileName={fileNames.pkh} isProcessing={fileProcessing.pkh} onChange={(e) => handleFileChange(e, 'pkh')} />
                   <FormFile label="Kartu KKS" fileName={fileNames.kks} isProcessing={fileProcessing.kks} onChange={(e) => handleFileChange(e, 'kks')} />
