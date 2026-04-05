@@ -14,7 +14,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight">SPMB SMK Dwija Praja</h1>
+              <h1 className="text-xl font-bold tracking-tight">SPMB SMK DWIJA PRAJA</h1>
               <p className="text-xs text-blue-200 tracking-widest">Sistem Penerimaan Murid Baru</p>
             </div>
           </Link>
