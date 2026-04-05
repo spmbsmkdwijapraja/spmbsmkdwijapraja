@@ -38,14 +38,16 @@ export interface StudentRegistration {
 
   ayah: ParentData;
   ibu: ParentData;
-  wali?: ParentData & { status: 'Ada Wali' | 'Tidak Ada Wali' };
+  // ✅ FIX: Wali tidak optional, tapi status yang menentukan ada/tidak
+  wali: ParentData & { status: 'Ada Wali' | 'Tidak Ada Wali' };
 
   dokumen: {
     akta: string;
     kk: string;
     nisn: string;
     rapor: string;
-    ijazahSMPMTsSederajat?: string;
+    // ✅ FIX: Key konsisten dengan backend GAS
+    ijazahSMPSederajat?: string;
     kip?: string;
     pkh?: string;
     kks?: string;
@@ -59,7 +61,7 @@ export interface StudentRegistration {
 
 export interface ScheduleSetting {
   id: string;
-  groupNumber: number; // 1 for first 200, 2 for next 200...
+  groupNumber: number;
   date: string;
   location: string;
 }
