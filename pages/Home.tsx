@@ -96,10 +96,10 @@ const Home: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { title: 'Isi Formulir', desc: 'Lengkapi data pendaftar, data orang tua, dan alamat lengkap dengan benar.', icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' },
-              { title: 'Unggah Berkas', desc: 'Scan dokumen wajib seperti Akta, KK, dan Rapor dalam format digital.', icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12' },
+              { title: 'Isi Formulir', desc: 'Lengkapi data pendaftar, data orang tua dan alamat lengkap dengan benar.', icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z' },
+              { title: 'Unggah Berkas', desc: 'Scan dokumen wajib seperti Akta, KK dan Rapor dalam format digital.', icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12' },
               { title: 'Verifikasi', desc: 'Tim panitia akan memvalidasi dokumen yang telah Anda unggah.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
-              { title: 'Cetak Bukti', desc: 'Simpan PDF bukti pendaftaran untuk dibawa saat jadwal seleksi tiba.', icon: 'M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z' },
+              { title: 'Cetak Bukti', desc: 'Simpan PDF bukti pendaftaran untuk dibawa saat melakukan tes wawancara.', icon: 'M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z' },
             ].map((step, idx) => (
               <div key={idx} className="group bg-white p-8 rounded-[2rem] text-center border border-slate-100 hover:border-blue-100 hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500">
                 <div className="w-20 h-20 bg-slate-50 text-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500 transform group-hover:rotate-6">
