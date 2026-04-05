@@ -24,7 +24,7 @@ export interface StudentRegistration {
   alamat: string;
   desa: string;
   kecamatan: string;
-  kabupaten: string;
+  kabupatenKota: string;
   kodePos: string;
   statusKeluarga: string;
   anakKe: string;
@@ -40,7 +40,7 @@ export interface StudentRegistration {
     kk: string;
     nisn: string;
     rapor: string;
-    ijazahDiniyah?: string;
+    ijazahSMPMTsSederajat?: string;
     kip?: string;
     pkh?: string;
     kks?: string;
