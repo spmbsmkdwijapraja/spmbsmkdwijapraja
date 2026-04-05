@@ -1,6 +1,6 @@
 
 const SHEET_NAME = 'Pendaftaran';
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; // Ganti dengan ID Spreadsheet Anda
+const SPREADSHEET_ID = '17_33_slf7dnusMRILQJT54vk5y_1Y126a23PsWa6SHc'; // Ganti dengan ID Spreadsheet Anda
 
 function doGet(e) {
   const action = e.parameter.action;
