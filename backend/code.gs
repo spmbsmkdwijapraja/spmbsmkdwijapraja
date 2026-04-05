@@ -77,7 +77,7 @@ function handleRegistration(data) {
     data.alamat,          // 12: Alamat (Jalan/Dusun)
     data.desa,            // 13: Desa
     data.kecamatan,       // 14: Kecamatan
-    data.kabupaten,       // 15: Kabupaten
+    data.kabupatenKota,       // 15: Kabupaten/Kota
     data.kodePos,         // 16: Kode Pos
     data.statusKeluarga,  // 17: Status dalam Keluarga
     data.anakKe,          // 18: Anak Ke
@@ -140,7 +140,7 @@ function generatePdf(regNo, data, jadwal, folder) {
       '{{Jenis_Kelamin}}': data.jenisKelamin,
       '{{Nomor_Telepon}}': data.telepon,
       '{{Asal_Sekolah}}': data.asalSekolah,
-      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", " + data.kabupaten,
+      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", " + data.kabupatenKota,
       '{{Jadwal_Seleksi}}': jadwal
     };
 
