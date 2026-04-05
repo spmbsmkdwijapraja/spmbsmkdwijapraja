@@ -76,7 +76,7 @@ function handleRegistration(data) {
     data.npsnSekolah,
     data.tahunLulus,
     data.pilihanJurusan1,
-    data.pilihanJurusan2, // ✅ FIX koma
+    data.pilihanJurusan2,
 
     data.alamat,
     data.desa,
