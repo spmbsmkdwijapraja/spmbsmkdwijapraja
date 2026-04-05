@@ -6,6 +6,13 @@ import { RELIGIONS, FAMILY_STATUSES, EDUCATIONS, JOBS, INCOMES } from '../consta
 import { api } from '../services/api';
 import { StudentRegistration } from '../types';
 
+const MAJOR = [
+  "DKN",
+  "TKL",
+  "TO",
+  "TPFL"
+];
+
 const Register: React.FC = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
