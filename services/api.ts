@@ -5,7 +5,7 @@ import { StudentRegistration } from '../types';
  * GANTI URL DI BAWAH INI dengan URL Web App Anda 
  * yang didapat setelah klik 'Deploy' > 'New Deployment' di Google Apps Script.
  */
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzdRs6HeDFo6WFtZauUISfXOW1l1E-XKjC4duyyvoqFxzjFM0E6L3cH6tAQ64-UY3I-/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw9GTBJGNLP1aNpvYVMMJN0WlogkCVb0VRGiCKRPuh0cStwa_8RjnGK0VP0bRVuRBJC/exec';
 
 export const api = {
   submitRegistration: async (data: StudentRegistration) => {
