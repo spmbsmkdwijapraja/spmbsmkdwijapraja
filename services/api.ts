@@ -1,7 +1,7 @@
 
 import { StudentRegistration } from '../types';
 
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbw9GTBJGNLP1aNpvYVMMJN0WlogkCVb0VRGiCKRPuh0cStwa_8RjnGK0VP0bRVuRBJC/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwGnej9wVNeKr3JtI2rQfLG3KkE__7-6Yas1FkKOWIZYZlHrDaD_y9UwD8xPZ9YVkBh/exec';
 
 export const api = {
   submitRegistration: async (data: StudentRegistration) => {
