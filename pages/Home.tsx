@@ -38,7 +38,7 @@ const Home: React.FC = () => {
               </span>
             </h2>
             <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-              Sistem Penerimaan Murid Baru Tahun Ajaran 2026/2027 telah dibuka. Daftarkan putra-putri Anda melalui sistem online kami yang terintegrasi dan modern.
+              Penerimaan Murid Baru Tahun Ajaran 2026/2027 telah dibuka. Daftarkan putra-putri Anda melalui sistem online kami yang terintegrasi dan modern.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-5">
               <Link 
@@ -67,20 +67,20 @@ const Home: React.FC = () => {
           <div className="bg-blue-600 rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-blue-600/40">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
               <div className="space-y-1">
-                <div className="text-3xl md:text-4xl font-black">3000+</div>
-                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Lulusan Terserap Dunia Kerja</div>
+                <div className="text-3xl md:text-4xl font-black">1.2k+</div>
+                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Pendaftar</div>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl md:text-4xl font-black">25+</div>
-                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Mitra Industri & Dunia Usaha</div>
+                <div className="text-3xl md:text-4xl font-black">45+</div>
+                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Guru Ahli</div>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl md:text-4xl font-black">Rp 0</div>
-                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Bebas Uang Gedung</div>
+                <div className="text-3xl md:text-4xl font-black">A</div>
+                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Akreditasi</div>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl md:text-4xl font-black">4</div>
-                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Kompetensi Keahlian Unggulan</div>
+                <div className="text-3xl md:text-4xl font-black">100%</div>
+                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Kelulusan</div>
               </div>
             </div>
           </div>
