@@ -21,6 +21,9 @@ export interface StudentRegistration {
   agama: string;
   asalSekolah: string;
   npsnSekolah: string;
+  tahunLulus: string;
+  pilihanJurusan1: string;
+  pilihanJurusan2: string;
   alamat: string;
   desa: string;
   kecamatan: string;
@@ -30,7 +33,9 @@ export interface StudentRegistration {
   anakKe: string;
   jumlahSaudara: string;
   nomorKK: string;
-  
+
+  pilihanJurusan1: MajorData;
+  pilihanJurusan1: MajorData;
   ayah: ParentData;
   ibu: ParentData;
   wali?: ParentData & { status: 'Ada Wali' | 'Tidak Ada Wali' };
