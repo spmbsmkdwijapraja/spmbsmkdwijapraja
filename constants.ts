@@ -3,7 +3,7 @@ export const RELIGIONS = [
   'Islam', 'Kristen Protestan', 'Kristen Katolik', 'Hindu', 'Buddha', 'Khonghucu'
 ];
 
-export const MAJOR = [
+export const MAJORS = [
   'Desain Komunikasi Visual (DKV)',
   'Teknik Ketenagalistrikan (TKL)',
   'Teknik Otomotif (TO)',
