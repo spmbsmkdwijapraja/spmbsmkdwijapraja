@@ -59,7 +59,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
           
           <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
-            <p>&copy; 2026 PT LangsungKlik Digital Media. Hak Cipta Dilindungi.</p>
+            <p>&copy; 2026 SMK Dwija Praja Kota Pekalongan. Hak Cipta Dilindungi.</p>
             <div className="mt-4 md:mt-0 group relative">
                <Link 
                 to="/admin/login" 
