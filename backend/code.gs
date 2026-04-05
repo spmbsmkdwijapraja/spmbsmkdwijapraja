@@ -74,6 +74,7 @@ function handleRegistration(data) {
     data.agama,           // 9: Agama
     data.asalSekolah,     // 10: Sekolah Asal
     data.npsnSekolah,     // 11: NPSN Sekolah
+    data.tahunLulus,
     data.pilihanJurusan1,    // ✅ Sudah ada (pastikan urutan)
     data.pilihanJurusan2,    // ✅ Sudah ada
     data.alamat,          // 12: Alamat (Jalan/Dusun)
