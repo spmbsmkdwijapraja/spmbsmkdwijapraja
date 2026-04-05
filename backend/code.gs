@@ -48,7 +48,7 @@ function handleRegistration(data) {
 
   // Upload berkas (Wajib & Opsional)
   const docLinks = {};
-  const allFiles = ['akta', 'kk', 'nisn', 'rapor', 'ijazahSMPSederajat', 'kip', 'pkh', 'kks', 'bpjs'];
+  const allFiles = ['akta', 'kk', 'nisn', 'rapor', 'ijazahSMPMTsSederajat', 'kip', 'pkh', 'kks', 'bpjs'];
   allFiles.forEach(key => {
     if (data.dokumen[key] && data.dokumen[key].includes('base64,')) {
       docLinks[key] = uploadBase64File(data.dokumen[key], key.toUpperCase() + "-" + data.nama.toUpperCase(), folder);
@@ -112,7 +112,7 @@ function handleRegistration(data) {
     pdfUrl, // 40
     
     // DOKUMEN (41-49)
-    docLinks.akta, docLinks.kk, docLinks.nisn, docLinks.rapor, docLinks.ijazahSMPSederajat, docLinks.kip, docLinks.pkh, docLinks.kks, docLinks.bpjs
+    docLinks.akta, docLinks.kk, docLinks.nisn, docLinks.rapor, docLinks.ijazahSMPMTsSederajat, docLinks.kip, docLinks.pkh, docLinks.kks, docLinks.bpjs
   ];
   
   sheet.appendRow(rowData);
