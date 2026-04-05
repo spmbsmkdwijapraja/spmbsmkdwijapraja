@@ -192,6 +192,7 @@ const Register: React.FC = () => {
                   'Teknik Ketenagalistrikan (TKL)', 
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
+                   </div> 
                   </div>
                 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
