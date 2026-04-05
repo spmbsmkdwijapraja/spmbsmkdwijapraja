@@ -18,6 +18,7 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
+    tahunLulus: '', pilihanJurusan1: '', pilihanJurusan2: '',
     alamat: '', desa: '', rt: '', rw: '', kecamatan: '', kabupatenKota: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
