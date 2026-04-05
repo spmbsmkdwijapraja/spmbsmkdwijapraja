@@ -81,6 +81,7 @@ const Home: React.FC = () => {
               <div className="space-y-1">
                 <div className="text-3xl md:text-4xl font-black">4</div>
                 <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">Kompetensi Keahlian</div>
+                <div className="text-xs md:text-sm text-blue-100 uppercase font-bold tracking-widest">(DKV, TKL, TO & TPFL)</div>
               </div>
             </div>
           </div>
