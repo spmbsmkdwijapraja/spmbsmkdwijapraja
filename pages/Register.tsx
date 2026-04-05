@@ -25,7 +25,7 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
-    tahunLulus: '', pilihanJurusan1: 'Pilih jurusan yang kamu minati', pilihanJurusan2: 'Tidak boleh sama dengan Pilihan Jurusan 1',
+    tahunLulus: '', pilihanJurusan1: '', pilihanJurusan2: '',
     alamat: '', desa: '', kecamatan: '', kabupatenKota: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
@@ -190,8 +190,8 @@ const Register: React.FC = () => {
                 </div>
 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
-                  <FormSelect label="Pilihan Jurusan 1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={MAJOR} required />
-                  <FormSelect label="Pilihan Jurusan 2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={MAJOR} required />
+                  <FormSelect label="Jurusan 1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={MAJOR} required />
+                  <FormSelect label="Jurusan 2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={MAJOR} required />
                 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
                 <FormInput label="Alamat (Jalan/Dusun)" name="alamat" value={formData.alamat} onChange={handleChange} required type="textarea" rows={2} />
