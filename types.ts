@@ -40,7 +40,7 @@ export interface StudentRegistration {
     kk: string;
     nisn: string;
     rapor: string;
-    ijazahSMPSederajat?: string;
+    ijazahSMPMTsSederajat?: string;
     kip?: string;
     pkh?: string;
     kks?: string;
