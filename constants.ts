@@ -8,7 +8,7 @@ export const EDUCATIONS = [
 ];
 
 export const JOBS = [
-  'Tidak Bekerja', 'PNS', 'TNI/Polri', 'Pegawai Swasta', 'Wiraswasta', 'Petani/Pekebun', 'Nelayan', 'Buruh', 'Lainnya', 'Meninggal Dunia'
+  'Tidak Bekerja', 'PNS', 'TNI/Polri', 'Pegawai Swasta', 'Wiraswasta', 'Petani/Pekebun', 'Nelayan', 'Buruh', 'Lainnya'
 ];
 
 export const INCOMES = [
