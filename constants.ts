@@ -4,7 +4,10 @@ export const RELIGIONS = [
 ];
 
 export const MAJOR = [
-  'Desain Komunikasi Visual (DKV)', 'Teknik Ketenagalistrikan (TKL)', 'Teknik Otomotif (TO)', 'Teknik Pengelasan dan Fabrikasi Logam'
+  'Desain Komunikasi Visual (DKV)',        // ✅ Perhatikan ejaan "Desain"
+  'Teknik Ketenagalistrikan (TKL)',
+  'Teknik Otomotif (TO)',
+  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
 ];
 
 export const EDUCATIONS = [
