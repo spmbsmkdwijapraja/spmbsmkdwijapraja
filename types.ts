@@ -22,8 +22,10 @@ export interface StudentRegistration {
   asalSekolah: string;
   npsnSekolah: string;
   tahunLulus: string;
+
   pilihanJurusan1: string;
   pilihanJurusan2: string;
+
   alamat: string;
   desa: string;
   kecamatan: string;
@@ -34,14 +36,12 @@ export interface StudentRegistration {
   jumlahSaudara: string;
   nomorKK: string;
 
-  pilihanJurusan1: MajorData;
-  pilihanJurusan1: MajorData;
   ayah: ParentData;
   ibu: ParentData;
   wali?: ParentData & { status: 'Ada Wali' | 'Tidak Ada Wali' };
-  
+
   dokumen: {
-    akta: string; // Base64
+    akta: string;
     kk: string;
     nisn: string;
     rapor: string;
