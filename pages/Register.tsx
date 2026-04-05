@@ -18,12 +18,12 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<StudentRegistration>({
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
-    alamat: '', desa: '', rt: '', rw: '', kecamatan: '', kabupatenKota: '', kodePos: '',
+    alamat: '', desa: '', kecamatan: '', kabupaten: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     wali: { status: 'Tidak Ada Wali', nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
-    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' }
+    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahDiniyah: '', kip: '', pkh: '', kks: '', bpjs: '' }
   });
 
   const formatDatePicker = (value: string) => {
@@ -178,32 +178,14 @@ const Register: React.FC = () => {
                   <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
                   <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
                   <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
-                  // Di bagian Step 1, perbaiki options:
-                  <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={[
-                  'Desain Komunikasi Visual (DKV)',        // ✅ Perbaiki typo
-                  'Teknik Ketenagalistrikan (TKL)', 
-                  'Teknik Otomotif (TO)', 
-                  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-                  ]} required />
-
-                  <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={[
-                  'Desain Komunikasi Visual (DKV)',        // ✅ Perbaiki typo
-                  'Teknik Ketenagalistrikan (TKL)', 
-                  'Teknik Otomotif (TO)', 
-                  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-                  ]} required />
                 </div>
                 
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
                 <FormInput label="Alamat (Jalan/Dusun)" name="alamat" value={formData.alamat} onChange={handleChange} required type="textarea" rows={2} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
-                  <div className="grid grid-cols-2 gap-4">
-                  <FormInput label="RT" name="rt" type="number" value={formData.rt} onChange={handleChange} required />
-                  <FormInput label="RW" name="rw" type="number" value={formData.rw} onChange={handleChange} required />
-                </div>
                   <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-                  <FormInput label="Kab./Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
+                  <FormInput label="Kabupaten" name="kabupaten" value={formData.kabupaten} onChange={handleChange} required />
                   <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
                   <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
                   <div className="grid grid-cols-2 gap-4">
@@ -306,7 +288,7 @@ const Register: React.FC = () => {
                   <div className="col-span-full mt-6">
                     <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Opsional (Jika Ada)</h4>
                   </div>
-                  <FormFile label="Ijazah SMP/Sederajat" fileName={fileNames.ijazahSMPSederajat} isProcessing={fileProcessing.ijazahSMPSederajat} onChange={(e) => handleFileChange(e, 'ijazahSMPSederajat')} />
+                  <FormFile label="Ijazah Diniyah" fileName={fileNames.ijazahDiniyah} isProcessing={fileProcessing.ijazahDiniyah} onChange={(e) => handleFileChange(e, 'ijazahDiniyah')} />
                   <FormFile label="Kartu KIP" fileName={fileNames.kip} isProcessing={fileProcessing.kip} onChange={(e) => handleFileChange(e, 'kip')} />
                   <FormFile label="Kartu PKH" fileName={fileNames.pkh} isProcessing={fileProcessing.pkh} onChange={(e) => handleFileChange(e, 'pkh')} />
                   <FormFile label="Kartu KKS" fileName={fileNames.kks} isProcessing={fileProcessing.kks} onChange={(e) => handleFileChange(e, 'kks')} />
