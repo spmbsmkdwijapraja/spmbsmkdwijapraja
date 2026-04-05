@@ -4,10 +4,7 @@ export const RELIGIONS = [
 ];
 
 export const MAJORS = [
-  'Desain Komunikasi Visual (DKV)',
-  'Teknik Ketenagalistrikan (TKL)',
-  'Teknik Otomotif (TO)',
-  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
+  'Desain Komunikasi Visual (DKV)', 'Teknik Ketenagalistrikan (TKL)', 'Teknik Otomotif (TO)', 'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
 ];
 
 export const EDUCATIONS = [
