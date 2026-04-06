@@ -148,126 +148,78 @@ const Register: React.FC = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="p-8 md:p-12">
-  {step === 1 && (
-    <div className="animate-fadeIn">
+            {step === 1 && (
+              <div className="animate-fadeIn">
+                <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center">
+                  <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3 text-sm font-bold">01</span>
+                  Data Calon Peserta Didik
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                  <FormInput label="Nama Lengkap" name="nama" value={formData.nama} onChange={handleChange} required />
+                  <FormInput label="NIK" name="nik" type="number" value={formData.nik} onChange={handleChange} required />
+                  <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
+                  <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
+                  <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
+                    <FormInput 
+                      label="Tanggal Lahir" 
+                      name="tanggalLahir" 
+                      type="text" 
+                      placeholder="DD/MM/YYYY" 
+                      maxLength={10}
+                      value={formData.tanggalLahir} 
+                      onChange={handleChange} 
+                      required 
+                    />
+                  </div>
 
-      {/* ================= DATA SISWA ================= */}
-      <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center">
-        <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3 text-sm font-bold">01</span>
-        Data Calon Peserta Didik
-      </h3>
+                  <FormSelect label="Jenis Kelamin" name="jenisKelamin" value={formData.jenisKelamin} onChange={handleChange} options={['Laki-laki', 'Perempuan']} required />
+                  <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
+                  <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
+                  <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
+                  <FormInput label="Tahun Lulus" name="tahunLulus" type="number" value={formData.tahunLulus} onChange={handleChange} required />                  
+                
+                   </div> 
+                                  
+                <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
+                <FormInput label="Alamat (Jalan/Dusun)" name="alamat" value={formData.alamat} onChange={handleChange} required type="textarea" rows={2} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                  <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
+                  <div className="grid grid-cols-2 gap-4">
+                  <FormInput label="RT" name="rT" type="number" value={formData.rT} onChange={handleChange} required />
+                  <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
+                </div>
+                  <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
+                  <FormInput label="Kabupaten/Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
+                  <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
+                  <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
+                    <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
+                  
+                    <div className="grid grid-cols-2 gap-4">
+                    <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
+                  <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={[
+                  'Desain Komunikasi Visual (DKV)',
+                  'Teknik Ketenagalistrikan (TKL)', 
+                  'Teknik Otomotif (TO)', 
+                  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
+                  <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={[
+                  'Desain Komunikasi Visual (DKV)',
+                  'Teknik Ketenagalistrikan (TKL)', 
+                  'Teknik Otomotif (TO)', 
+                  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
+                  </div>
+                  </div>
+                </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormInput label="Nama Lengkap" name="nama" value={formData.nama} onChange={handleChange} required />
-        <FormInput label="NIK" name="nik" type="number" value={formData.nik} onChange={handleChange} required />
-        <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
-        <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
-        <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
-
-        <div className="grid grid-cols-2 gap-4">
-          <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
-          <FormInput 
-            label="Tanggal Lahir" 
-            name="tanggalLahir" 
-            type="text" 
-            placeholder="DD/MM/YYYY"
-            maxLength={10}
-            value={formData.tanggalLahir} 
-            onChange={handleChange} 
-            required 
-          />
-        </div>
-
-        <FormSelect label="Jenis Kelamin" name="jenisKelamin" value={formData.jenisKelamin} onChange={handleChange} options={['Laki-laki', 'Perempuan']} required />
-        <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
-        <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
-        <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
-        <FormInput label="Tahun Lulus" name="tahunLulus" type="number" value={formData.tahunLulus} onChange={handleChange} required />
-      </div>
-
-      {/* ================= ALAMAT ================= */}
-      <h4 className="font-bold text-slate-700 mt-10 mb-4 border-b pb-2">
-        Alamat & Keluarga
-      </h4>
-
-      <FormInput 
-        label="Alamat (Jalan/Dusun)" 
-        name="alamat" 
-        value={formData.alamat} 
-        onChange={handleChange} 
-        required 
-        type="textarea" 
-        rows={2} 
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-        <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
-
-        <div className="grid grid-cols-2 gap-4">
-          <FormInput label="RT" name="rT" type="number" value={formData.rT} onChange={handleChange} required />
-          <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
-        </div>
-
-        <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-        <FormInput label="Kabupaten/Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
-        <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
-        <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
-
-        <div className="grid grid-cols-2 gap-4">
-          <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
-          <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
-        </div>
-      </div>
-
-      {/* ================= JURUSAN ================= */}
-      <h4 className="font-bold text-slate-700 mt-10 mb-4 border-b pb-2">
-        Pilihan Jurusan
-      </h4>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <FormSelect 
-          label="Jurusan ke-1" 
-          name="pilihanJurusan1" 
-          value={formData.pilihanJurusan1} 
-          onChange={handleChange} 
-          options={[
-            'Desain Komunikasi Visual (DKV)',
-            'Teknik Ketenagalistrikan (TKL)', 
-            'Teknik Otomotif (TO)', 
-            'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-          ]} 
-          required 
-        />
-
-        <FormSelect 
-          label="Jurusan ke-2" 
-          name="pilihanJurusan2" 
-          value={formData.pilihanJurusan2} 
-          onChange={handleChange} 
-          options={[
-            'Desain Komunikasi Visual (DKV)',
-            'Teknik Ketenagalistrikan (TKL)', 
-            'Teknik Otomotif (TO)', 
-            'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-          ]} 
-          required 
-        />
-      </div>
-
-      {/* ================= BUTTON ================= */}
-      <div className="mt-10 flex justify-end">
-        <button 
-          type="button" 
-          onClick={nextStep} 
-          className="px-8 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-md"
-        >
-          Lanjut: Data Orang Tua
-        </button>
-      </div>
-
-    </div>
-  )}
-</form>
+                <div className="mt-10 flex justify-end">
+                  <button type="button" onClick={nextStep} className="px-10 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg">Lanjut: Data Orang Tua</button>
+                </div>
+              </div>
+            )}
 
             {step === 2 && (
               <div className="animate-fadeIn">
