@@ -180,8 +180,7 @@ const Register: React.FC = () => {
                   <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
                   <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
                   <FormInput label="Tahun Lulus" name="tahunLulus" type="number" value={formData.tahunLulus} onChange={handleChange} required />                  
-                
-                   </div> 
+                  </div> 
                                   
                 <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Alamat & Keluarga</h4>
                 <FormInput label="Alamat (Jalan/Dusun)" name="alamat" value={formData.alamat} onChange={handleChange} required type="textarea" rows={2} />
@@ -199,8 +198,7 @@ const Register: React.FC = () => {
                     <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   
-                    <div className="grid grid-cols-2 gap-4">
-                    <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
+                  <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
                   <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
                   'Teknik Ketenagalistrikan (TKL)', 
@@ -211,8 +209,7 @@ const Register: React.FC = () => {
                   'Teknik Ketenagalistrikan (TKL)', 
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
-                  </div>
-                  </div>
+                  </div>                  
                 </div>
 
                 <div className="mt-10 flex justify-end">
