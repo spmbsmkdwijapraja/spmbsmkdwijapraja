@@ -198,7 +198,7 @@ const Register: React.FC = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
-                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                     <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
                   <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
