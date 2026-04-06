@@ -74,22 +74,22 @@ function handleRegistration(data) {
     data.agama,           // 9: Agama
     data.asalSekolah,     // 10: Sekolah Asal
     data.npsnSekolah,     // 11: NPSN Sekolah
-    data.tahunLulus,
-    data.pilihanJurusan1,    // ✅ Sudah ada (pastikan urutan)
-    data.pilihanJurusan2,    // ✅ Sudah ada
-    data.alamat,          // 12: Alamat (Jalan/Dusun)
-    data.desa,            // 13: Desa
-    data.rt,                 // ✅ Tambah ini
-    data.rw,                 // ✅ Tambah ini
-    data.kecamatan,       // 14: Kecamatan
-    data.kabupatenKota,       // 15: Kabupaten/Kota
-    data.kodePos,         // 16: Kode Pos
-    data.statusKeluarga,  // 17: Status dalam Keluarga
-    data.anakKe,          // 18: Anak Ke
-    data.jumlahSaudara,   // 19: Jumlah Saudara
-    data.nomorKK,         // 20: Nomor KK
+    data.tahunLulus,      // 12: Tahun Lulus
+    data.pilihanJurusan1, // 13: Sudah ada (pastikan urutan)
+    data.pilihanJurusan2, // 14: Sudah ada
+    data.alamat,          // 15: Alamat (Jalan/Dusun)
+    data.desa,            // 16: Desa
+    data.rT,              // 17: Tambah ini
+    data.rW,              // 18: Tambah ini
+    data.kecamatan,       // 19: Kecamatan
+    data.kabupatenKota,   // 20: Kabupaten/Kota
+    data.kodePos,         // 21: Kode Pos
+    data.statusKeluarga,  // 22: Status dalam Keluarga
+    data.anakKe,          // 23: Anak Ke
+    data.jumlahSaudara,   // 24: Jumlah Saudara
+    data.nomorKK,         // 25: Nomor KK
     
-    // DATA AYAH (21-26)
+    // DATA AYAH (26-31)
     data.ayah.nama, 
     data.ayah.nik, 
     data.ayah.pendidikan, 
@@ -97,7 +97,7 @@ function handleRegistration(data) {
     data.ayah.penghasilan, 
     data.ayah.telepon,
     
-    // DATA IBU (27-32)
+    // DATA IBU (32-37)
     data.ibu.nama, 
     data.ibu.nik, 
     data.ibu.pendidikan, 
@@ -105,7 +105,7 @@ function handleRegistration(data) {
     data.ibu.penghasilan, 
     data.ibu.telepon,
     
-    // DATA WALI (33-38)
+    // DATA WALI (38-43)
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.nama : "-", 
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.nik : "-", 
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.pendidikan : "-", 
@@ -113,10 +113,10 @@ function handleRegistration(data) {
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.penghasilan : "-", 
     (data.wali && data.wali.status === 'Ada Wali') ? data.wali.telepon : "-",
     
-    jadwal, // 39
-    pdfUrl, // 40
+    jadwal, // 44
+    pdfUrl, // 45
     
-    // DOKUMEN (41-49)
+    // DOKUMEN (46-54)
     docLinks.akta, docLinks.kk, docLinks.nisn, docLinks.rapor, docLinks.ijazahSMPMTsSederajat, docLinks.kip, docLinks.pkh, docLinks.kks, docLinks.bpjs
   ];
   
@@ -145,7 +145,9 @@ function generatePdf(regNo, data, jadwal, folder) {
       '{{Jenis_Kelamin}}': data.jenisKelamin,
       '{{Nomor_Telepon}}': data.telepon,
       '{{Asal_Sekolah}}': data.asalSekolah,
-      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", Kec. " + data.kecamatan + ", " + data.kabupatenKota,
+      '{{Pilihan_Jurusan_1}}': data.pilihanJurusan1,
+      '{{Pilihan_Jurusan_2}}': data.pilihanJurusan2,
+      '{{Alamat_Lengkap}}': data.alamat + ", Desa " + data.desa + ", RT " + data.rT + ", RW " + data.rW + ", Kec. " + data.kecamatan + ", " + data.kabupatenKota,
       '{{Jadwal_Seleksi}}': jadwal
     };
 
