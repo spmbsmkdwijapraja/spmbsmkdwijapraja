@@ -164,7 +164,6 @@ const Register: React.FC = () => {
         <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
         <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
 
-        {/* Tempat & Tanggal Lahir */}
         <div className="grid grid-cols-2 gap-4">
           <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
           <FormInput 
@@ -204,7 +203,6 @@ const Register: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
         <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
 
-        {/* RT RW */}
         <div className="grid grid-cols-2 gap-4">
           <FormInput label="RT" name="rT" type="number" value={formData.rT} onChange={handleChange} required />
           <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
@@ -215,7 +213,6 @@ const Register: React.FC = () => {
         <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
         <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
 
-        {/* Anak */}
         <div className="grid grid-cols-2 gap-4">
           <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
           <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
