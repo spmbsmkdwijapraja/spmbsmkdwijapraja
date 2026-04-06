@@ -19,7 +19,7 @@ const Register: React.FC = () => {
     nama: '', nik: '', nisn: '', telepon: '', tempatLahir: '', tanggalLahir: '', 
     jenisKelamin: 'Laki-laki', agama: '', asalSekolah: '', npsnSekolah: '',
     tahunLulus: '', pilihanJurusan1: '', pilihanJurusan2: '',
-    alamat: '', desa: '', rt: '', rw: '', kecamatan: '', kabupatenKota: '', kodePos: '',
+    alamat: '', desa: '', rT: '', rW: '', kecamatan: '', kabupatenKota: '', kodePos: '',
     statusKeluarga: '', anakKe: '', jumlahSaudara: '', nomorKK: '',
     ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
     ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
@@ -198,8 +198,8 @@ const Register: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
                   <div className="grid grid-cols-2 gap-4">
-                  <FormInput label="RT" name="rt" type="number" value={formData.rt} onChange={handleChange} required />
-                  <FormInput label="RW" name="rw" type="number" value={formData.rw} onChange={handleChange} required />
+                  <FormInput label="RT" name="rT" type="number" value={formData.rt} onChange={handleChange} required />
+                  <FormInput label="RW" name="rW" type="number" value={formData.rw} onChange={handleChange} required />
                 </div>
                   <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
                   <FormInput label="Kabupaten/Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
