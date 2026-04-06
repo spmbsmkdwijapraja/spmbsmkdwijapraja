@@ -160,7 +160,7 @@ const Register: React.FC = () => {
                   <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
                   <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
                   <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
-                  
+                </div>
                   <div className="grid grid-cols-2 gap-4">
                     <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
                     <FormInput 
