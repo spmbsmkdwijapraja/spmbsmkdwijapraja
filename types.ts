@@ -26,8 +26,8 @@ export interface StudentRegistration {
   pilihanJurusan2: string;
   alamat: string;
   desa: string;
-  rt: string;
-  rw: string;
+  rT: string;
+  rW: string;
   kecamatan: string;
   kabupatenKota: string;
   kodePos: string;
