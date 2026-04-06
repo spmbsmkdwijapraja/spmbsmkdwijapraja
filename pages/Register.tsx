@@ -160,19 +160,18 @@ const Register: React.FC = () => {
                   <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
                   <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
                   <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
-                </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
-                    <FormInput 
-                      label="Tanggal Lahir" 
-                      name="tanggalLahir" 
-                      type="text" 
-                      placeholder="DD/MM/YYYY" 
-                      maxLength={10}
-                      value={formData.tanggalLahir} 
-                      onChange={handleChange} 
-                      required 
-                    />
+                
+                 <div className="grid grid-cols-2 gap-4">
+                  <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
+                  <FormInput 
+                    label="Tanggal Lahir" 
+                    name="tanggalLahir" 
+                    type="text" 
+                    placeholder="DD/MM/YYYY" 
+                    maxLength={10}
+                    value={formData.tanggalLahir} 
+                    onChange={handleChange} 
+                    required />
                   </div>
 
                   <FormSelect label="Jenis Kelamin" name="jenisKelamin" value={formData.jenisKelamin} onChange={handleChange} options={['Laki-laki', 'Perempuan']} required />
@@ -198,12 +197,13 @@ const Register: React.FC = () => {
                     <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   
-                  <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
+                <h4 className="font-bold text-slate-700 mt-8 mb-4 border-b pb-2">Pilihan Jurusan</h4>
                   <FormSelect label="Jurusan ke-1" name="pilihanJurusan1" value={formData.pilihanJurusan1} onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
                   'Teknik Ketenagalistrikan (TKL)', 
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
                   'Teknik Ketenagalistrikan (TKL)', 
