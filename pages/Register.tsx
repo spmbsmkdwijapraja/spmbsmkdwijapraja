@@ -211,6 +211,7 @@ const Register: React.FC = () => {
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
                   </div>
+                  </div>
                 </div>
 
                 <div className="mt-10 flex justify-end">
