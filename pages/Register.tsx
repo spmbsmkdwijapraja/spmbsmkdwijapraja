@@ -203,14 +203,12 @@ const Register: React.FC = () => {
                   'Teknik Ketenagalistrikan (TKL)', 
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                   <FormSelect label="Jurusan ke-2" name="pilihanJurusan2" value={formData.pilihanJurusan2} onChange={handleChange} options={[
                   'Desain Komunikasi Visual (DKV)',
                   'Teknik Ketenagalistrikan (TKL)', 
                   'Teknik Otomotif (TO)', 
                   'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']} required />
-                  </div>
-                  </div>
+                  </div>                  
                 </div>
 
                 <div className="mt-10 flex justify-end">
