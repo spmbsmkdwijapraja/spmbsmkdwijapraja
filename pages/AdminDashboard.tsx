@@ -141,8 +141,7 @@ const AdminDashboard: React.FC = () => {
                     <th className="px-8 py-6">Asal Sekolah</th>
                     <th className="px-8 py-6">Jurusan 1</th>      // ✅ Tambah
                     <th className="px-8 py-6">Jurusan 2</th>      // ✅ Tambah
-                    <th className="px-8 py-6">RT/RW</th>          // ✅ Tambah
-                    <th className="px-8 py-6">Jadwal Seleksi</th>
+                    <th className="px-8 py-6">Jadwal Wawancara</th>
                     <th className="px-8 py-6 text-center">Aksi</th>
                   </tr>
                 </thead>
@@ -166,7 +165,6 @@ const AdminDashboard: React.FC = () => {
                       <td className="px-8 py-6 text-slate-500 font-medium">{item.asalSekolah}</td>
                       <td>{item.pilihanJurusan1}</td>    // ✅ Tambah
                       <td>{item.pilihanJurusan2}</td>    // ✅ Tambah
-                      <td>{item.rt}/{item.rw}</td>       // ✅ Tambah
                       <td className="px-8 py-6">
                          <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-[10px] font-black border border-blue-100 uppercase">
                            {item.jadwalSeleksi}
