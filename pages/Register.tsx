@@ -217,7 +217,7 @@ const Register: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
   {/* Kecamatan */}
-  <div className="md:col-span-2">
+  <div className="md:col-span-1">
     <FormInput
       label="Kecamatan"
       name="kecamatan"
@@ -228,7 +228,7 @@ const Register: React.FC = () => {
   </div>
 
   {/* Kabupaten/Kota */}
-  <div className="md:col-span-2">
+  <div className="md:col-span-1">
     <FormInput
       label="Kabupaten/Kota"
       name="kabupatenKota"
