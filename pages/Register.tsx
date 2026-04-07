@@ -214,7 +214,7 @@ const Register: React.FC = () => {
           <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
 
   {/* Kecamatan */}
   <div className="md:col-span-2">
@@ -228,7 +228,7 @@ const Register: React.FC = () => {
   </div>
 
   {/* Kabupaten/Kota */}
-  <div className="md:col-span-1">
+  <div className="md:col-span-2">
     <FormInput 
       label="Kabupaten/Kota" 
       name="kabupatenKota" 
