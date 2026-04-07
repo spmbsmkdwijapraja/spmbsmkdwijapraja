@@ -196,16 +196,14 @@ const Register: React.FC = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
-                  
+                  </div>
                 {/* ================= JURUSAN ================= */}
 <div className="mt-10 max-w-4xl">
 
-  {/* Judul */}
   <h4 className="font-bold text-slate-700 mb-4">
     Pilihan Jurusan
   </h4>
 
-  {/* Dropdown */}
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
     <FormSelect 
