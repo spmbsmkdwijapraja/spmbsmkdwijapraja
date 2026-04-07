@@ -215,40 +215,41 @@ const Register: React.FC = () => {
           <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
   {/* Kecamatan */}
-  <div className="md:col-span-2">
-    <FormInput 
-      label="Kecamatan" 
-      name="kecamatan" 
-      value={formData.kecamatan} 
-      onChange={handleChange} 
-      required 
-    />
-  </div>
+  <FormInput 
+    label="Kecamatan" 
+    name="kecamatan" 
+    value={formData.kecamatan} 
+    onChange={handleChange} 
+    required 
+  />
 
-  {/* Kabupaten/Kota */}
-  <div className="md:col-span-2">
-    <FormInput 
-      label="Kabupaten/Kota" 
-      name="kabupatenKota" 
-      value={formData.kabupatenKota} 
-      onChange={handleChange} 
-      required 
-    />
-  </div>
+  {/* Gabungan Kabupaten/Kota + Kode Pos */}
+  <div className="grid grid-cols-3 gap-4">
 
-  {/* Kode Pos */}
-  <div className="md:col-span-1">
-    <FormInput 
-      label="Kode Pos" 
-      name="kodePos" 
-      type="number" 
-      value={formData.kodePos} 
-      onChange={handleChange} 
-      required 
-    />
+    <div className="col-span-2">
+      <FormInput 
+        label="Kabupaten/Kota" 
+        name="kabupatenKota" 
+        value={formData.kabupatenKota} 
+        onChange={handleChange} 
+        required 
+      />
+    </div>
+
+    <div className="col-span-1">
+      <FormInput 
+        label="Kode Pos" 
+        name="kodePos" 
+        type="number" 
+        value={formData.kodePos} 
+        onChange={handleChange} 
+        required 
+      />
+    </div>
+
   </div>
 
 </div>
