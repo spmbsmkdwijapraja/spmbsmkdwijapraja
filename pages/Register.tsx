@@ -278,7 +278,7 @@ const Register: React.FC = () => {
 
     </div>
   )}
-</form>
+
             {step === 2 && (
               <div className="animate-fadeIn">
                 <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center">
