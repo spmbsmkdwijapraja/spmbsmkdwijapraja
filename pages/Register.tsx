@@ -198,36 +198,38 @@ const Register: React.FC = () => {
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   </div>
                 {/* ================= JURUSAN ================= */}
-<div className="mt-10 md:col-span-2">
+<div className="mt-10 col-span-1 md:col-span-2">
 
   <h4 className="font-bold text-slate-700 mb-4">
     Pilihan Jurusan
   </h4>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <FormSelect 
-      label="Jurusan ke-1" 
-      name="pilihanJurusan1" 
-      value={formData.pilihanJurusan1} 
-      onChange={handleChange} 
-      options={[ ... ]} 
-      required 
-    />
+    <div className="w-full">
+      <FormSelect 
+        label="Jurusan ke-1" 
+        name="pilihanJurusan1" 
+        value={formData.pilihanJurusan1} 
+        onChange={handleChange} 
+        options={[ ... ]} 
+        required 
+      />
+    </div>
 
-    <FormSelect 
-      label="Jurusan ke-2" 
-      name="pilihanJurusan2" 
-      value={formData.pilihanJurusan2} 
-      onChange={handleChange} 
-      options={[ ... ]} 
-      required 
-    />
+    <div className="w-full">
+      <FormSelect 
+        label="Jurusan ke-2" 
+        name="pilihanJurusan2" 
+        value={formData.pilihanJurusan2} 
+        onChange={handleChange} 
+        options={[ ... ]} 
+        required 
+      />
+    </div>
 
   </div>
-</div>                  
-                </div>
-
+</div>
                 <div className="mt-10 flex justify-end">
                   <button type="button" onClick={nextStep} className="px-10 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg">Lanjut: Data Orang Tua</button>
                 </div>
