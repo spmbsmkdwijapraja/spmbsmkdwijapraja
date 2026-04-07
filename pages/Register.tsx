@@ -211,10 +211,32 @@ const Register: React.FC = () => {
           <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
         </div>
 
-        <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-        <FormInput label="Kabupaten/Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
-        <div className="grid grid-cols-2 gap-4">
-        <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <FormInput 
+          label="Kecamatan" 
+          name="kecamatan" 
+          value={formData.kecamatan} 
+          onChange={handleChange} 
+          required 
+        />
+
+        <FormInput 
+          label="Kabupaten/Kota" 
+          name="kabupatenKota" 
+          value={formData.kabupatenKota} 
+          onChange={handleChange} 
+          required 
+        />
+
+        <FormInput 
+          label="Kode Pos" 
+          name="kodePos" 
+          type="number" 
+          value={formData.kodePos} 
+          onChange={handleChange} 
+          required 
+        />
+
         </div>
         
         <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
