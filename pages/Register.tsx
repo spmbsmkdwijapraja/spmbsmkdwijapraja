@@ -211,7 +211,8 @@ const Register: React.FC = () => {
           <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="md:col-span-2">
         <FormInput 
           label="Kecamatan" 
           name="kecamatan" 
@@ -219,7 +220,8 @@ const Register: React.FC = () => {
           onChange={handleChange} 
           required 
         />
-
+        </div>
+        <div className="md:col-span-1">
         <FormInput 
           label="Kabupaten/Kota" 
           name="kabupatenKota" 
@@ -227,7 +229,8 @@ const Register: React.FC = () => {
           onChange={handleChange} 
           required 
         />
-
+        </div>
+        <div className="md:col-span-1">
         <FormInput 
           label="Kode Pos" 
           name="kodePos" 
@@ -236,7 +239,7 @@ const Register: React.FC = () => {
           onChange={handleChange} 
           required 
         />
-
+        </div>
         </div>
         
         <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
