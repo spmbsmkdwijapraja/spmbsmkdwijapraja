@@ -215,13 +215,41 @@ const Register: React.FC = () => {
           <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-        <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
-        <FormInput label="Kabupaten/Kota" name="kabupatenKota" type="number" value={formData.kabupatenKota} onChange={handleChange} required />
-        <div className="grid grid-cols-2 gap-4">
-		    <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
-        </div>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mt-4">
+  {/* Kecamatan */}
+  <div className="md:col-span-2.5">
+    <FormInput
+      label="Kecamatan"
+      name="kecamatan"
+      value={formData.kecamatan}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  {/* Kabupaten/Kota */}
+  <div className="md:col-span-2.5">
+    <FormInput
+      label="Kabupaten/Kota"
+      name="kabupatenKota"
+      value={formData.kabupatenKota}
+      onChange={handleChange}
+      required
+    />
+  </div>
+
+  {/* Kode Pos */}
+  <div className="md:col-span-1">
+    <FormInput
+      label="Kode Pos"
+      name="kodePos"
+      type="number"
+      value={formData.kodePos}
+      onChange={handleChange}
+      required
+    />
+  </div>
+</div>
         
         <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
         <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
