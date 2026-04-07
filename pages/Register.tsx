@@ -198,13 +198,13 @@ const Register: React.FC = () => {
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   </div>
                 {/* ================= JURUSAN ================= */}
-<div className="mt-10 max-w-4xl md:col-span-2">
+<div className="mt-10 md:col-span-2">
 
   <h4 className="font-bold text-slate-700 mb-4">
     Pilihan Jurusan
   </h4>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
 
     <FormSelect 
       label="Jurusan ke-1" 
