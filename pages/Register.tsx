@@ -198,7 +198,7 @@ const Register: React.FC = () => {
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   </div>
                 {/* ================= JURUSAN ================= */}
-<div className="mt-10 max-w-4xl">
+<div className="mt-10 max-w-4xl md:col-span-2">
 
   <h4 className="font-bold text-slate-700 mb-4">
     Pilihan Jurusan
@@ -211,12 +211,7 @@ const Register: React.FC = () => {
       name="pilihanJurusan1" 
       value={formData.pilihanJurusan1} 
       onChange={handleChange} 
-      options={[
-        'Desain Komunikasi Visual (DKV)',
-        'Teknik Ketenagalistrikan (TKL)', 
-        'Teknik Otomotif (TO)', 
-        'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-      ]} 
+      options={[ ... ]} 
       required 
     />
 
@@ -225,12 +220,7 @@ const Register: React.FC = () => {
       name="pilihanJurusan2" 
       value={formData.pilihanJurusan2} 
       onChange={handleChange} 
-      options={[
-        'Desain Komunikasi Visual (DKV)',
-        'Teknik Ketenagalistrikan (TKL)', 
-        'Teknik Otomotif (TO)', 
-        'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-      ]} 
+      options={[ ... ]} 
       required 
     />
 
