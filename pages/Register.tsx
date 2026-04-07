@@ -198,39 +198,46 @@ const Register: React.FC = () => {
                     <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   
                 {/* ================= JURUSAN ================= */}
-                <h4 className="font-bold text-slate-700 mt-10 mb-4 border-b pb-2 whitespace-nowrap">
-                  Pilihan Jurusan
-                </h4>
+<div className="mt-10 max-w-4xl">
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormSelect 
-                    label="Jurusan ke-1" 
-                    name="pilihanJurusan1" 
-                    value={formData.pilihanJurusan1} 
-                    onChange={handleChange} 
-                    options={[
-                      'Desain Komunikasi Visual (DKV)',
-                      'Teknik Ketenagalistrikan (TKL)', 
-                      'Teknik Otomotif (TO)', 
-                      'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-                    ]} 
-                    required 
-                  />
+  {/* Judul */}
+  <h4 className="font-bold text-slate-700 mb-4">
+    Pilihan Jurusan
+  </h4>
 
-                  <FormSelect 
-                    label="Jurusan ke-2" 
-                    name="pilihanJurusan2" 
-                    value={formData.pilihanJurusan2} 
-                    onChange={handleChange} 
-                    options={[
-                      'Desain Komunikasi Visual (DKV)',
-                      'Teknik Ketenagalistrikan (TKL)', 
-                      'Teknik Otomotif (TO)', 
-                      'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
-                    ]} 
-                    required 
-                  />
-                </div>                  
+  {/* Dropdown */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <FormSelect 
+      label="Jurusan ke-1" 
+      name="pilihanJurusan1" 
+      value={formData.pilihanJurusan1} 
+      onChange={handleChange} 
+      options={[
+        'Desain Komunikasi Visual (DKV)',
+        'Teknik Ketenagalistrikan (TKL)', 
+        'Teknik Otomotif (TO)', 
+        'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
+      ]} 
+      required 
+    />
+
+    <FormSelect 
+      label="Jurusan ke-2" 
+      name="pilihanJurusan2" 
+      value={formData.pilihanJurusan2} 
+      onChange={handleChange} 
+      options={[
+        'Desain Komunikasi Visual (DKV)',
+        'Teknik Ketenagalistrikan (TKL)', 
+        'Teknik Otomotif (TO)', 
+        'Teknik Pengelasan dan Fabrikasi Logam (TPFL)'
+      ]} 
+      required 
+    />
+
+  </div>
+</div>                  
                 </div>
 
                 <div className="mt-10 flex justify-end">
