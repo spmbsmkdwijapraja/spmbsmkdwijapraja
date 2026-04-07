@@ -216,34 +216,12 @@ const Register: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-  {/* Kecamatan */}
-  <FormInput 
-    label="Kecamatan" 
-    name="kecamatan" 
-    value={formData.kecamatan} 
-    onChange={handleChange} 
-    required 
-  />
-
-  {/* Gabungan Kabupaten/Kota + Kode Pos */}
-  <div className="grid grid-cols-2 gap-4">
-    <FormInput 
-      label="Kabupaten/Kota" 
-      name="kabupatenKota" 
-      value={formData.kabupatenKota} 
-      onChange={handleChange} 
-      required 
-    />
-    <FormInput 
-      label="Kode Pos" 
-      name="kodePos" 
-      type="number" 
-      value={formData.kodePos} 
-      onChange={handleChange} 
-      required 
-    />
-  </div>
-</div>
+        <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
+        <FormInput label="Kabupaten/Kota" name="kabupatenKota" type="number" value={formData.kabupatenKota} onChange={handleChange} required />
+        <div className="grid grid-cols-2 gap-4">
+		    <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
+        </div>
+        </div>
         
         <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
         <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
