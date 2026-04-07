@@ -22,8 +22,6 @@ export interface StudentRegistration {
   asalSekolah: string;
   npsnSekolah: string;
   tahunLulus: string;
-  pilihanJurusan1: string;
-  pilihanJurusan2: string;
   alamat: string;
   desa: string;
   rT: string;
@@ -35,6 +33,8 @@ export interface StudentRegistration {
   anakKe: string;
   jumlahSaudara: string;
   nomorKK: string;
+  pilihanJurusan1: string;
+  pilihanJurusan2: string;
   
   ayah: ParentData;
   ibu: ParentData;
