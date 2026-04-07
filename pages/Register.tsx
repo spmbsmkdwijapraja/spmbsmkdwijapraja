@@ -189,7 +189,8 @@ const Register: React.FC = () => {
         <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
         <FormInput label="Tahun Lulus" name="tahunLulus" type="number" value={formData.tahunLulus} onChange={handleChange} required />
         </div>
-
+        </div>
+      
       {/* ================= ALAMAT ================= */}
       <h4 className="font-bold text-slate-700 mt-10 mb-4 border-b pb-2">
         Alamat & Keluarga
