@@ -281,7 +281,11 @@ const Register: React.FC = () => {
               }
               handleChange(e);
             }}
-            options={['TKJ', 'RPL', 'AKL', 'BDP', 'OTKP']}
+            options={[
+              'Desain Komunikasi Visual (DKV)', 
+              'Teknik Ketenagalistrikan (TKL)', 
+              'Teknik Otomotif (TO)', 
+              'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']}
             required
           />
 
@@ -296,7 +300,11 @@ const Register: React.FC = () => {
               }
               handleChange(e);
             }}
-            options={['TKJ', 'RPL', 'AKL', 'BDP', 'OTKP']}
+            options={[
+              'Desain Komunikasi Visual (DKV)', 
+              'Teknik Ketenagalistrikan (TKL)', 
+              'Teknik Otomotif (TO)', 
+              'Teknik Pengelasan dan Fabrikasi Logam (TPFL)']}
             required
           />
 
