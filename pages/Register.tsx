@@ -239,16 +239,16 @@ const Register: React.FC = () => {
   </div>
 
   {/* Kode Pos */}
-  <div className="md:col-span-1">
-    <FormInput
-      label="Kode Pos"
-      name="kodePos"
-      type="number"
-      value={formData.kodePos}
-      onChange={handleChange}
-      required
-    />
-  </div>
+<div className="md:col-span-1 max-w-[140px]">
+  <FormInput
+    label="Kode Pos"
+    name="kodePos"
+    type="number"
+    value={formData.kodePos}
+    onChange={handleChange}
+    required
+  />
+</div>
 </div>
         
         <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
