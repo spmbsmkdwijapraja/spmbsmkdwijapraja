@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormInput, FormSelect, FormFile } from '../components/FormComponents';
@@ -338,7 +339,10 @@ const Register: React.FC = () => {
                           setHasWali(e.target.checked);
                           setFormData(prev => ({
                             ...prev,
-                            wali: { ...prev.wali, status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali' },
+                            wali: {
+                              ...prev.wali,
+                              status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali',
+                            } as StudentRegistration['wali'],
                           }));
                         }}
                       />
