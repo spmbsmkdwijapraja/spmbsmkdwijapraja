@@ -406,16 +406,24 @@ const Register: React.FC = () => {
                   </label>
                 </div>
 
-                <div className="mt-10 flex justify-between">
-                  <button type="button" onClick={prevStep} className="px-8 py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition">Kembali</button>
-                  <button type="submit" className="px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition shadow-lg flex items-center gap-3">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Submit
-                  </button>
-                </div>
-              </div>
+                <div className="mt-10 flex gap-4">
+  <button 
+    type="button" 
+    onClick={prevStep} 
+    className="flex-1 px-8 py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition text-center"
+  >
+    Kembali
+  </button>
+  <button 
+    type="submit" 
+    className="flex-1 px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition shadow-lg flex items-center justify-center gap-3"
+  >
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    Submit
+  </button>
+</div>
             )}
 
           </form>
