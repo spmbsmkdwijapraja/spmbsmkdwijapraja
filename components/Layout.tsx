@@ -8,10 +8,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <header className="bg-blue-900 text-white shadow-lg">
         <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 mb-4 md:mb-0">
-            <div className="bg-white p-2 rounded-lg">
-              <svg className="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12V12a1 1 0 00.553.894l3.5 1.75a1 1 0 00.894 0l3.5-1.75A1 1 0 0014 12v-1.88l1.69-.724a1 1 0 011.083 1.635l-7 3a1 1 0 01-.788 0l-7-3a1 1 0 011.083-1.635z"></path>
-              </svg>
+            <div className="bg-white p-1.5 rounded-lg">
+              <img 
+                src="https://lh3.googleusercontent.com/d/1LNxS98u1eiPd_utAfeIjB29XNlMQXRtH" 
+                alt="Logo SMK Dwija Praja" 
+                className="w-9 h-9 object-contain"
+              />
             </div>
             <div>
               <h1 className="text-xl font-bold tracking-tight">SPMB SMK DWIJA PRAJA</h1>
