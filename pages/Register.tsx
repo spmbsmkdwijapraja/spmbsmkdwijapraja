@@ -1,171 +1,120 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormInput, FormSelect } from '../components/FormComponents';
+import { FormInput, FormSelect, FormFile } from '../components/FormComponents';
+import { RELIGIONS, FAMILY_STATUSES, EDUCATIONS, JOBS, INCOMES } from '../constants';
 import { api } from '../services/api';
+import { StudentRegistration } from '../types';
 
 const JURUSAN_OPTIONS = [
   'Desain Komunikasi Visual (DKV)',
   'Teknik Ketenagalistrikan (TKL)',
-  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)',
   'Teknik Otomotif (TO)',
+  'Teknik Pengelasan dan Fabrikasi Logam (TPFL)',
 ];
-
-const INFO_SOURCES = [
-  'Media Sosial (Whatsapp, Facebook, Instagram, Twitter, Youtube dll)',
-  'Radio',
-  'Koran/Majalah',
-  'Sosialisasi SMK Dwija Praja di SMP/MTs',
-  'Teman/Saudara/Kerabat/Tetangga/Alumni SMK Dwija Praja',
-  'Petugas SMK Dwija Praja yang datang ke rumah',
-];
-
-const PETUGAS_OPTIONS = [
-  'HERBUDI MISTIANTO, S.Pd.',
-  'SETYORINI, S.E.',
-  'M. ZAENAL ARIFIN, S.T.',
-  'I\'IN PARSIYANI, S.Pd.',
-  'KASIH PUTRI P., S.Kom.',
-];
-
-const AGAMA_OPTIONS = ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu'];
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [loadingStatus, setLoadingStatus] = useState('Memulai pendaftaran...');
-  const [petugasLain, setPetugasLain] = useState(false);
+  const [hasWali, setHasWali] = useState(false);
+  const [fileNames, setFileNames] = useState<Record<string, string>>({});
+  const [fileProcessing, setFileProcessing] = useState<Record<string, boolean>>({});
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<StudentRegistration>({
     nama: '',
-    jenisKelamin: '',
-    agama: '',
+    nik: '',
+    nisn: '',
+    telepon: '',
     tempatLahir: '',
     tanggalLahir: '',
+    jenisKelamin: 'Laki-laki',
+    agama: '',
+    asalSekolah: '',
+    npsnSekolah: '',
+    tahunLulus: '',
+    pilihanJurusan1: '',
+    pilihanJurusan2: '',
     alamat: '',
     desa: '',
     rT: '',
     rW: '',
     kecamatan: '',
     kabupatenKota: '',
-    provinsi: '',
-    teleponSiswa: '',
-    email: '',
-    asalSekolah: '',
-    tahunLulus: '',
-    pilihanJurusan1: '',
-    pilihanJurusan2: '',
-    sumberInformasi: '',
-    namaOrtuWali: '',
-    teleponOrtuWali: '',
-    petugasPendaftaran: '',
-    petugasLainnya: '',
+    kodePos: '',
+    statusKeluarga: '',
+    anakKe: '',
+    jumlahSaudara: '',
+    nomorKK: '',
+    ayah: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
+    ibu: { nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
+    wali: { status: 'Tidak Ada Wali', nama: '', nik: '', pendidikan: '', pekerjaan: '', penghasilan: '', telepon: '' },
+    dokumen: { akta: '', kk: '', nisn: '', rapor: '', ijazahSMPMTsSederajat: '', kip: '', pkh: '', kks: '', bpjs: '' },
   });
 
-  const handleChange = (e: React.ChangeEvent<<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  // ─── Helpers ──────────────────────────────────────────────────────────────
+
+  const formatDatePicker = (value: string) => {
+    const v = value.replace(/\D/g, '').slice(0, 8);
+    if (v.length >= 5) return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
+    if (v.length >= 3) return `${v.slice(0, 2)}/${v.slice(2)}`;
+    return v;
+  };
+
+  const handleChange = (e: React.ChangeEvent<any>, section?: 'ayah' | 'ibu' | 'wali') => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const processedValue = name === 'tanggalLahir' ? formatDatePicker(value) : value;
+
+    if (section) {
+      setFormData(prev => ({
+        ...prev,
+        [section]: { ...(prev[section] as any), [name]: processedValue },
+      }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: processedValue }));
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<any>, field: string) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert(`File ${file.name} terlalu besar. Maksimal ukuran adalah 2MB.`);
+      e.target.value = '';
+      return;
+    }
+
+    setFileProcessing(prev => ({ ...prev, [field]: true }));
+    setFileNames(prev => ({ ...prev, [field]: file.name }));
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData(prev => ({
+        ...prev,
+        dokumen: { ...prev.dokumen, [field]: reader.result as string },
+      }));
+      setFileProcessing(prev => ({ ...prev, [field]: false }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.nama.trim()) {
-      alert('Nama Lengkap wajib diisi.');
-      return;
-    }
-    if (!formData.jenisKelamin) {
-      alert('Jenis Kelamin wajib dipilih.');
-      return;
-    }
-    if (!formData.agama) {
-      alert('Agama wajib dipilih.');
-      return;
-    }
-    if (!formData.tempatLahir.trim()) {
-      alert('Tempat Lahir wajib diisi.');
-      return;
-    }
-    if (!formData.tanggalLahir.trim()) {
-      alert('Tanggal Lahir wajib diisi.');
-      return;
-    }
-    if (!formData.alamat.trim()) {
-      alert('Alamat wajib diisi.');
-      return;
-    }
-    if (!formData.desa.trim()) {
-      alert('Desa/Kelurahan wajib diisi.');
-      return;
-    }
-    if (!formData.rT.trim()) {
-      alert('RT wajib diisi.');
-      return;
-    }
-    if (!formData.rW.trim()) {
-      alert('RW wajib diisi.');
-      return;
-    }
-    if (!formData.kecamatan.trim()) {
-      alert('Kecamatan wajib diisi.');
-      return;
-    }
-    if (!formData.kabupatenKota.trim()) {
-      alert('Kabupaten/Kota wajib diisi.');
-      return;
-    }
-    if (!formData.provinsi.trim()) {
-      alert('Provinsi wajib diisi.');
-      return;
-    }
-    if (!formData.teleponSiswa.trim()) {
-      alert('No. HP/WA Siswa wajib diisi.');
-      return;
-    }
-    if (!formData.asalSekolah.trim()) {
-      alert('Asal Sekolah wajib diisi.');
-      return;
-    }
-    if (!formData.tahunLulus.trim()) {
-      alert('Tahun Lulus wajib diisi.');
-      return;
-    }
-    if (!formData.pilihanJurusan1) {
-      alert('Pilihan Jurusan ke 1 wajib dipilih.');
-      return;
-    }
-    if (!formData.pilihanJurusan2) {
-      alert('Pilihan Jurusan ke 2 wajib dipilih.');
-      return;
-    }
-    if (formData.pilihanJurusan1 === formData.pilihanJurusan2) {
-      alert('Pilihan Jurusan ke 1 dan ke 2 tidak boleh sama.');
-      return;
-    }
-    if (!formData.sumberInformasi) {
-      alert('Sumber Informasi wajib dipilih.');
-      return;
-    }
-    if (!formData.namaOrtuWali.trim()) {
-      alert('Nama Orangtua/Wali Murid wajib diisi.');
-      return;
-    }
-    if (!formData.teleponOrtuWali.trim()) {
-      alert('No. HP/WA Orangtua/Wali Murid wajib diisi.');
+    if (!/^\d{2}\/\d{2}\/\d{4}$/.test(formData.tanggalLahir)) {
+      alert('Format Tanggal Lahir harus DD/MM/YYYY (Contoh: 17/08/2010)');
       return;
     }
 
     setLoading(true);
     setLoadingStatus('Mengirim data pendaftaran...');
-    setTimeout(() => setLoadingStatus('Menyusun bukti pendaftaran...'), 2000);
+    setTimeout(() => setLoadingStatus('Mengunggah dokumen persyaratan...'), 2000);
+    setTimeout(() => setLoadingStatus('Menyusun PDF Bukti Pendaftaran...'), 5000);
 
     try {
-      const payload = {
-        ...formData,
-        petugasPendaftaran: petugasLain ? formData.petugasLainnya : formData.petugasPendaftaran,
-      };
-
-      const result = await api.submitRegistration(payload);
+      const result = await api.submitRegistration(formData);
       if (result.success) {
         navigate('/success', { state: { data: result } });
       } else {
@@ -179,8 +128,15 @@ const Register: React.FC = () => {
     }
   };
 
+  const nextStep = () => { window.scrollTo(0, 0); setStep(prev => prev + 1); };
+  const prevStep = () => { window.scrollTo(0, 0); setStep(prev => prev - 1); };
+
+  // ─── Render ───────────────────────────────────────────────────────────────
+
   return (
     <div className="py-12 bg-slate-50 min-h-screen relative">
+
+      {/* Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-[2.5rem] p-10 max-w-sm w-full text-center shadow-2xl animate-scaleIn">
@@ -198,66 +154,72 @@ const Register: React.FC = () => {
         </div>
       )}
 
-      <div className="container mx-auto px-4 max-w-3xl">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+
+          {/* Header + Progress */}
           <div className="bg-blue-600 px-8 py-10 text-white">
             <h2 className="text-2xl font-bold">Formulir Pendaftaran Online</h2>
-            <p className="text-blue-100 mt-2">PPDB SMK Dwija Praja — Lengkapi seluruh data dengan benar.</p>
+            <p className="text-blue-100 mt-2">Lengkapi seluruh data sesuai dokumen asli.</p>
+            <div className="flex mt-8 gap-2">
+              {[1, 2, 3].map(s => (
+                <div
+                  key={s}
+                  className={`flex-1 h-2 rounded-full transition-all duration-500 ${step >= s ? 'bg-white' : 'bg-blue-800'}`}
+                />
+              ))}
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-10">
+          <form onSubmit={handleSubmit} className="p-8 md:p-12">
 
-            <section>
-              <SectionTitle number="01" title="Data Calon Peserta Didik" />
+            {/* ═══════════════════════════════════════════════════
+                STEP 1 — Data Siswa
+            ═══════════════════════════════════════════════════ */}
+            {step === 1 && (
+              <div className="animate-fadeIn">
 
-              <div className="space-y-5">
-                <FormInput
-                  label="Nama Lengkap"
-                  name="nama"
-                  value={formData.nama}
-                  onChange={handleChange}
-                  required
-                />
+                <SectionTitle number="01" title="Data Calon Peserta Didik" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <FormSelect
-                    label="Jenis Kelamin"
-                    name="jenisKelamin"
-                    value={formData.jenisKelamin}
-                    onChange={handleChange}
-                    options={['Laki-laki', 'Perempuan']}
-                    required
-                  />
-                  <FormSelect
-                    label="Agama"
-                    name="agama"
-                    value={formData.agama}
-                    onChange={handleChange}
-                    options={AGAMA_OPTIONS}
-                    required
-                  />
+                {/* Identitas Siswa */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormInput label="Nama Lengkap" name="nama" value={formData.nama} onChange={handleChange} required />
+                  <FormInput label="NIK" name="nik" type="number" value={formData.nik} onChange={handleChange} required />
+                  <FormInput label="Nomor KK" name="nomorKK" type="number" value={formData.nomorKK} onChange={handleChange} required />
+                  <FormInput label="NISN" name="nisn" type="number" value={formData.nisn} onChange={handleChange} required />
+                  <FormInput label="Nomor Telepon" name="telepon" type="number" value={formData.telepon} onChange={handleChange} required />
+
+                  <div className="grid grid-cols-2 gap-4 md:col-span-2">
+                    <FormInput label="Tempat Lahir" name="tempatLahir" value={formData.tempatLahir} onChange={handleChange} required />
+                    <FormInput
+                      label="Tanggal Lahir"
+                      name="tanggalLahir"
+                      type="text"
+                      placeholder="DD/MM/YYYY"
+                      maxLength={10}
+                      value={formData.tanggalLahir}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <FormSelect label="Jenis Kelamin" name="jenisKelamin" value={formData.jenisKelamin} onChange={handleChange} options={['Laki-laki', 'Perempuan']} required />
+                  <FormSelect label="Agama" name="agama" value={formData.agama} onChange={handleChange} options={RELIGIONS} required />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <FormInput
-                    label="Tempat Lahir"
-                    name="tempatLahir"
-                    value={formData.tempatLahir}
-                    onChange={handleChange}
-                    required
-                  />
-                  <FormInput
-                    label="Tanggal Lahir"
-                    name="tanggalLahir"
-                    type="date"
-                    value={formData.tanggalLahir}
-                    onChange={handleChange}
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                  <FormInput label="Asal Sekolah" name="asalSekolah" value={formData.asalSekolah} onChange={handleChange} required />
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormInput label="NPSN Sekolah Asal" name="npsnSekolah" type="number" value={formData.npsnSekolah} onChange={handleChange} required />
+                    <FormInput label="Tahun Lulus" name="tahunLulus" type="number" value={formData.tahunLulus} onChange={handleChange} required />
+                  </div>
                 </div>
 
+                {/* Alamat & Keluarga */}
+                <SubSectionTitle title="Alamat & Keluarga" />
+
                 <FormInput
-                  label="Alamat"
+                  label="Alamat (Jalan/Dusun)"
                   name="alamat"
                   value={formData.alamat}
                   onChange={handleChange}
@@ -266,212 +228,195 @@ const Register: React.FC = () => {
                   rows={2}
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <FormInput
-                    label="Desa/Kelurahan"
-                    name="desa"
-                    value={formData.desa}
-                    onChange={handleChange}
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                  <FormInput label="Desa" name="desa" value={formData.desa} onChange={handleChange} required />
+
                   <div className="grid grid-cols-2 gap-4">
-                    <FormInput
-                      label="RT"
-                      name="rT"
-                      value={formData.rT}
-                      onChange={handleChange}
-                      required
-                    />
-                    <FormInput
-                      label="RW"
-                      name="rW"
-                      value={formData.rW}
-                      onChange={handleChange}
-                      required
-                    />
+                    <FormInput label="RT" name="rT" type="number" value={formData.rT} onChange={handleChange} required />
+                    <FormInput label="RW" name="rW" type="number" value={formData.rW} onChange={handleChange} required />
+                  </div>
+
+                  <FormInput label="Kecamatan" name="kecamatan" value={formData.kecamatan} onChange={handleChange} required />
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormInput label="Kabupaten/Kota" name="kabupatenKota" value={formData.kabupatenKota} onChange={handleChange} required />
+                    <FormInput label="Kode Pos" name="kodePos" type="number" value={formData.kodePos} onChange={handleChange} required />
+                  </div>
+
+                  <FormSelect label="Status dalam Keluarga" name="statusKeluarga" value={formData.statusKeluarga} onChange={handleChange} options={FAMILY_STATUSES} required />
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormInput label="Anak Ke" name="anakKe" type="number" value={formData.anakKe} onChange={handleChange} required />
+                    <FormInput label="Jumlah Saudara" name="jumlahSaudara" type="number" value={formData.jumlahSaudara} onChange={handleChange} required />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <FormInput
-                    label="Kecamatan"
-                    name="kecamatan"
-                    value={formData.kecamatan}
-                    onChange={handleChange}
+                {/* Pilihan Jurusan */}
+                <SubSectionTitle title="Pilihan Jurusan" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormSelect
+                    label="Jurusan ke-1"
+                    name="pilihanJurusan1"
+                    value={formData.pilihanJurusan1}
+                    options={JURUSAN_OPTIONS}
                     required
-                  />
-                  <FormInput
-                    label="Kabupaten/Kota"
-                    name="kabupatenKota"
-                    value={formData.kabupatenKota}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <FormInput
-                  label="Provinsi"
-                  name="provinsi"
-                  value={formData.provinsi}
-                  onChange={handleChange}
-                  required
-                />
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <FormInput
-                    label="No. HP/WA Siswa"
-                    name="teleponSiswa"
-                    type="tel"
-                    value={formData.teleponSiswa}
-                    onChange={handleChange}
-                    required
-                  />
-                  <FormInput
-                    label="Alamat Email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <FormInput
-                    label="Asal Sekolah/SMP/MTs/Sederajat"
-                    name="asalSekolah"
-                    value={formData.asalSekolah}
-                    onChange={handleChange}
-                    required
-                  />
-                  <FormInput
-                    label="Tahun Lulus"
-                    name="tahunLulus"
-                    type="number"
-                    value={formData.tahunLulus}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-            </section>
-
-            <section>
-              <SectionTitle number="02" title="Pilihan Jurusan / Kompetensi Keahlian" />
-              <p className="text-sm text-slate-500 mb-4 -mt-2">Pilihlah jurusan yang sesuai minat dan bakat anda</p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <FormSelect
-                  label="Pilihan Jurusan ke 1"
-                  name="pilihanJurusan1"
-                  value={formData.pilihanJurusan1}
-                  options={JURUSAN_OPTIONS}
-                  required
-                  onChange={e => {
-                    if (e.target.value === formData.pilihanJurusan2) {
-                      alert('Pilihan Jurusan ke 1 tidak boleh sama dengan ke 2');
-                      return;
-                    }
-                    handleChange(e);
-                  }}
-                />
-                <FormSelect
-                  label="Pilihan Jurusan ke 2"
-                  name="pilihanJurusan2"
-                  value={formData.pilihanJurusan2}
-                  options={JURUSAN_OPTIONS}
-                  required
-                  onChange={e => {
-                    if (e.target.value === formData.pilihanJurusan1) {
-                      alert('Pilihan Jurusan ke 2 tidak boleh sama dengan ke 1');
-                      return;
-                    }
-                    handleChange(e);
-                  }}
-                />
-              </div>
-            </section>
-
-            <section>
-              <SectionTitle number="03" title="Informasi Pendaftaran" />
-              <FormSelect
-                label="Dari mana Anda mendapat Informasi tentang Pendaftaran Peserta Didik Baru SMK Dwija Praja"
-                name="sumberInformasi"
-                value={formData.sumberInformasi}
-                options={INFO_SOURCES}
-                required
-                onChange={handleChange}
-              />
-            </section>
-
-            <section>
-              <SectionTitle number="04" title="Data Orang Tua / Wali Murid" />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <FormInput
-                  label="Nama Orangtua/Wali Murid"
-                  name="namaOrtuWali"
-                  value={formData.namaOrtuWali}
-                  onChange={handleChange}
-                  required
-                />
-                <FormInput
-                  label="No. HP/WA Orangtua/Wali Murid"
-                  name="teleponOrtuWali"
-                  type="tel"
-                  value={formData.teleponOrtuWali}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </section>
-
-            <section>
-              <SectionTitle number="05" title="Petugas Pendaftaran" />
-              <p className="text-sm text-slate-500 mb-4 -mt-2">
-                Kosongi jika calon peserta didik baru mengisi form tidak didampingi petugas pendaftaran atau mengisi form di rumah.
-              </p>
-
-              <div className="space-y-4">
-                <FormSelect
-                  label="Petugas Pendaftaran"
-                  name="petugasPendaftaran"
-                  value={formData.petugasPendaftaran}
-                  options={['-- Tidak Didampingi Petugas --', ...PETUGAS_OPTIONS, 'Yang lain']}
-                  onChange={e => {
-                    if (e.target.value === 'Yang lain') {
-                      setPetugasLain(true);
-                      setFormData(prev => ({ ...prev, petugasPendaftaran: 'Yang lain' }));
-                    } else {
-                      setPetugasLain(false);
+                    onChange={e => {
+                      if (e.target.value === formData.pilihanJurusan2) {
+                        alert('Jurusan ke-1 tidak boleh sama dengan jurusan ke-2');
+                        return;
+                      }
                       handleChange(e);
-                    }
-                  }}
-                />
-
-                {petugasLain && (
-                  <FormInput
-                    label="Nama Petugas Lainnya"
-                    name="petugasLainnya"
-                    value={formData.petugasLainnya}
-                    onChange={handleChange}
-                    required
-                    placeholder="Masukkan nama petugas lainnya"
+                    }}
                   />
-                )}
-              </div>
-            </section>
+                  <FormSelect
+                    label="Jurusan ke-2"
+                    name="pilihanJurusan2"
+                    value={formData.pilihanJurusan2}
+                    options={JURUSAN_OPTIONS}
+                    required
+                    onChange={e => {
+                      if (e.target.value === formData.pilihanJurusan1) {
+                        alert('Jurusan ke-2 tidak boleh sama dengan jurusan ke-1');
+                        return;
+                      }
+                      handleChange(e);
+                    }}
+                  />
+                </div>
 
-            <div className="pt-6 border-t border-slate-200">
-              <button
-                type="submit"
-                className="w-full md:w-auto px-12 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition shadow-lg flex items-center justify-center gap-3 mx-auto"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Selesaikan Pendaftaran
-              </button>
-            </div>
+                <div className="mt-10 flex justify-end">
+                  <button type="button" onClick={nextStep} className="px-10 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg">
+                    Lanjut: Data Orang Tua
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ═══════════════════════════════════════════════════
+                STEP 2 — Data Orang Tua / Wali
+            ═══════════════════════════════════════════════════ */}
+            {step === 2 && (
+              <div className="animate-fadeIn">
+
+                <SectionTitle number="02" title="Data Orang Tua / Wali" />
+
+                <div className="space-y-10">
+
+                  {/* Ayah */}
+                  <ParentCard color="blue" label="DATA AYAH">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                      <FormInput label="Nama Ayah" name="nama" value={formData.ayah.nama} onChange={e => handleChange(e, 'ayah')} required />
+                      <FormInput label="NIK Ayah" name="nik" type="number" value={formData.ayah.nik} onChange={e => handleChange(e, 'ayah')} required />
+                      <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.ayah.pendidikan} onChange={e => handleChange(e, 'ayah')} options={EDUCATIONS} required />
+                      <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.ayah.pekerjaan} onChange={e => handleChange(e, 'ayah')} options={JOBS} required />
+                      <FormSelect label="Penghasilan" name="penghasilan" value={formData.ayah.penghasilan} onChange={e => handleChange(e, 'ayah')} options={INCOMES} required />
+                      <FormInput label="Nomor Telepon Ayah" name="telepon" type="number" value={formData.ayah.telepon} onChange={e => handleChange(e, 'ayah')} required />
+                    </div>
+                  </ParentCard>
+
+                  {/* Ibu */}
+                  <ParentCard color="pink" label="DATA IBU">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+                      <FormInput label="Nama Ibu" name="nama" value={formData.ibu.nama} onChange={e => handleChange(e, 'ibu')} required />
+                      <FormInput label="NIK Ibu" name="nik" type="number" value={formData.ibu.nik} onChange={e => handleChange(e, 'ibu')} required />
+                      <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.ibu.pendidikan} onChange={e => handleChange(e, 'ibu')} options={EDUCATIONS} required />
+                      <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.ibu.pekerjaan} onChange={e => handleChange(e, 'ibu')} options={JOBS} required />
+                      <FormSelect label="Penghasilan" name="penghasilan" value={formData.ibu.penghasilan} onChange={e => handleChange(e, 'ibu')} options={INCOMES} required />
+                      <FormInput label="Nomor Telepon Ibu" name="telepon" type="number" value={formData.ibu.telepon} onChange={e => handleChange(e, 'ibu')} required />
+                    </div>
+                  </ParentCard>
+
+                  {/* Wali (opsional) */}
+                  <div className="p-6 bg-blue-50/50 rounded-2xl border border-blue-100">
+                    <div className="flex items-center mb-6">
+                      <input
+                        type="checkbox"
+                        id="checkWali"
+                        className="w-5 h-5 rounded text-blue-600 mr-3"
+                        checked={hasWali}
+                        onChange={e => {
+                          setHasWali(e.target.checked);
+                          setFormData(prev => ({
+                            ...prev,
+                            wali: {
+                              ...prev.wali,
+                              status: e.target.checked ? 'Ada Wali' : 'Tidak Ada Wali',
+                            } as StudentRegistration['wali'],
+                          }));
+                        }}
+                      />
+                      <label htmlFor="checkWali" className="font-bold text-slate-800">
+                        Gunakan Data Wali (Jika Ada)
+                      </label>
+                    </div>
+
+                    {hasWali && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 animate-fadeIn">
+                        <FormInput label="Nama Wali" name="nama" value={formData.wali?.nama} onChange={e => handleChange(e, 'wali')} required />
+                        <FormInput label="NIK Wali" name="nik" type="number" value={formData.wali?.nik} onChange={e => handleChange(e, 'wali')} required />
+                        <FormSelect label="Pendidikan Terakhir" name="pendidikan" value={formData.wali?.pendidikan} onChange={e => handleChange(e, 'wali')} options={EDUCATIONS} required />
+                        <FormSelect label="Pekerjaan" name="pekerjaan" value={formData.wali?.pekerjaan} onChange={e => handleChange(e, 'wali')} options={JOBS} required />
+                        <FormSelect label="Penghasilan" name="penghasilan" value={formData.wali?.penghasilan} onChange={e => handleChange(e, 'wali')} options={INCOMES} required />
+                        <FormInput label="Nomor Telepon Wali" name="telepon" type="number" value={formData.wali?.telepon} onChange={e => handleChange(e, 'wali')} required />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-10 flex justify-between">
+                  <button type="button" onClick={prevStep} className="px-8 py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition">Kembali</button>
+                  <button type="button" onClick={nextStep} className="px-10 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg">Lanjut: Berkas</button>
+                </div>
+              </div>
+            )}
+
+            {/* ═══════════════════════════════════════════════════
+                STEP 3 — Upload Berkas
+            ═══════════════════════════════════════════════════ */}
+            {step === 3 && (
+              <div className="animate-fadeIn">
+
+                <SectionTitle number="03" title="Unggah Berkas Persyaratan" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="col-span-full">
+                    <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Wajib</h4>
+                  </div>
+                  <FormFile label="Scan Akta Kelahiran" required fileName={fileNames.akta} isProcessing={fileProcessing.akta} onChange={e => handleFileChange(e, 'akta')} />
+                  <FormFile label="Scan Kartu Keluarga (KK)" required fileName={fileNames.kk} isProcessing={fileProcessing.kk} onChange={e => handleFileChange(e, 'kk')} />
+                  <FormFile label="Scan Kartu NISN" required fileName={fileNames.nisn} isProcessing={fileProcessing.nisn} onChange={e => handleFileChange(e, 'nisn')} />
+                  <FormFile label="Scan Rapor Terakhir" required fileName={fileNames.rapor} isProcessing={fileProcessing.rapor} onChange={e => handleFileChange(e, 'rapor')} />
+
+                  <div className="col-span-full mt-6">
+                    <h4 className="font-bold text-slate-800 mb-4 border-b pb-2 uppercase text-xs tracking-widest">Berkas Opsional (Jika Ada)</h4>
+                  </div>
+                  <FormFile label="Ijazah SMP/MTs/Sederajat" fileName={fileNames.ijazahSMPMTsSederajat} isProcessing={fileProcessing.ijazahSMPMTsSederajat} onChange={e => handleFileChange(e, 'ijazahSMPMTsSederajat')} />
+                  <FormFile label="Kartu KIP" fileName={fileNames.kip} isProcessing={fileProcessing.kip} onChange={e => handleFileChange(e, 'kip')} />
+                  <FormFile label="Kartu PKH" fileName={fileNames.pkh} isProcessing={fileProcessing.pkh} onChange={e => handleFileChange(e, 'pkh')} />
+                  <FormFile label="Kartu KKS" fileName={fileNames.kks} isProcessing={fileProcessing.kks} onChange={e => handleFileChange(e, 'kks')} />
+                  <FormFile label="Kartu BPJS" fileName={fileNames.bpjs} isProcessing={fileProcessing.bpjs} onChange={e => handleFileChange(e, 'bpjs')} />
+                </div>
+
+                <div className="mt-12 bg-blue-50 p-6 rounded-2xl border border-blue-100 flex items-start gap-4">
+                  <input type="checkbox" id="syarat" className="w-6 h-6 rounded mt-1 text-blue-600" required />
+                  <label htmlFor="syarat" className="text-sm text-slate-700 leading-relaxed font-medium">
+                    Saya menyatakan bahwa seluruh data yang diisikan adalah benar dan dapat dipertanggungjawabkan.
+                    Saya menyetujui syarat dan ketentuan pendaftaran murid baru.
+                  </label>
+                </div>
+
+                <div className="mt-10 flex justify-between">
+                  <button type="button" onClick={prevStep} className="px-8 py-4 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition">Kembali</button>
+                  <button type="submit" className="px-12 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition shadow-lg flex items-center gap-3">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Selesaikan Pendaftaran
+                  </button>
+                </div>
+              </div>
+            )}
 
           </form>
         </div>
@@ -480,13 +425,38 @@ const Register: React.FC = () => {
   );
 };
 
+// ─── Sub-components ──────────────────────────────────────────────────────────
+
+const PersonIcon = () => (
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+  </svg>
+);
+
 const SectionTitle: React.FC<{ number: string; title: string }> = ({ number, title }) => (
-  <h3 className="text-lg font-bold text-slate-800 mb-5 flex items-center border-b border-slate-100 pb-3">
+  <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center">
     <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mr-3 text-sm font-bold">
       {number}
     </span>
     {title}
   </h3>
 );
+
+const SubSectionTitle: React.FC<{ title: string }> = ({ title }) => (
+  <h4 className="font-bold text-slate-700 mt-10 mb-4 border-b pb-2">{title}</h4>
+);
+
+const ParentCard: React.FC<{ color: 'blue' | 'pink'; label: string; children: React.ReactNode }> = ({ color, label, children }) => {
+  const textColor = color === 'blue' ? 'text-blue-700' : 'text-pink-700';
+  return (
+    <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200">
+      <h4 className={`font-bold ${textColor} mb-6 flex items-center gap-2`}>
+        <PersonIcon />
+        {label}
+      </h4>
+      {children}
+    </div>
+  );
+};
 
 export default Register;
