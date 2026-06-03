@@ -8,13 +8,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <header className="bg-blue-900 text-white shadow-lg">
         <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
           <Link to="/" className="flex items-center space-x-3 mb-4 md:mb-0">
-            <div className="bg-white p-1.5 rounded-lg">
-              <img 
-                src="https://lh3.googleusercontent.com/d/1LNxS98u1eiPd_utAfeIjB29XNlMQXRtH" 
-                alt="Logo SMK Dwija Praja" 
-                className="w-9 h-9 object-contain"
-              />
-            </div>
+            <img 
+              src="https://lh3.googleusercontent.com/d/1LNxS98u1eiPd_utAfeIjB29XNlMQXRtH" 
+              alt="Logo SMK Dwija Praja" 
+              className="w-10 h-10 object-contain"
+            />
             <div>
               <h1 className="text-xl font-bold tracking-tight">SPMB SMK DWIJA PRAJA</h1>
               <p className="text-xs text-blue-200 tracking-widest">Sistem Penerimaan Murid Baru</p>
