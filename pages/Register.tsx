@@ -37,7 +37,6 @@ const Register: React.FC = () => {
   const [petugasLain, setPetugasLain] = useState(false);
 
   const [formData, setFormData] = useState({
-    // Data Siswa
     nama: '',
     jenisKelamin: '',
     agama: '',
@@ -57,7 +56,6 @@ const Register: React.FC = () => {
     pilihanJurusan1: '',
     pilihanJurusan2: '',
     sumberInformasi: '',
-    // Data Orang Tua
     namaOrtuWali: '',
     teleponOrtuWali: '',
     petugasPendaftaran: '',
@@ -183,7 +181,6 @@ const Register: React.FC = () => {
 
   return (
     <div className="py-12 bg-slate-50 min-h-screen relative">
-      {/* Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-[2.5rem] p-10 max-w-sm w-full text-center shadow-2xl animate-scaleIn">
@@ -203,7 +200,6 @@ const Register: React.FC = () => {
 
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
-          {/* Header */}
           <div className="bg-blue-600 px-8 py-10 text-white">
             <h2 className="text-2xl font-bold">Formulir Pendaftaran Online</h2>
             <p className="text-blue-100 mt-2">PPDB SMK Dwija Praja — Lengkapi seluruh data dengan benar.</p>
@@ -211,7 +207,6 @@ const Register: React.FC = () => {
 
           <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-10">
 
-            {/* ─── DATA SISWA ─── */}
             <section>
               <SectionTitle number="01" title="Data Calon Peserta Didik" />
 
@@ -222,8 +217,6 @@ const Register: React.FC = () => {
                   value={formData.nama}
                   onChange={handleChange}
                   required
-                  helperText="Tulis dengan huruf besar/kapital"
-                  style={{ textTransform: 'uppercase' }}
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -313,7 +306,6 @@ const Register: React.FC = () => {
                     value={formData.kabupatenKota}
                     onChange={handleChange}
                     required
-                    helperText="Contoh: Kota Pekalongan atau Kabupaten Pekalongan, Kabupaten Batang dll."
                   />
                 </div>
 
@@ -333,7 +325,6 @@ const Register: React.FC = () => {
                     value={formData.teleponSiswa}
                     onChange={handleChange}
                     required
-                    helperText="Usahakan belum pernah didaftarkan pada pendaftar lain. Jika sudah terdaftar, formulir hanya dikirim via email."
                   />
                   <FormInput
                     label="Alamat Email"
@@ -341,7 +332,6 @@ const Register: React.FC = () => {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    helperText="Isi dengan email aktif yang masih ingat passwordnya"
                   />
                 </div>
 
@@ -365,7 +355,6 @@ const Register: React.FC = () => {
               </div>
             </section>
 
-            {/* ─── PILIHAN JURUSAN ─── */}
             <section>
               <SectionTitle number="02" title="Pilihan Jurusan / Kompetensi Keahlian" />
               <p className="text-sm text-slate-500 mb-4 -mt-2">Pilihlah jurusan yang sesuai minat dan bakat anda</p>
@@ -402,7 +391,6 @@ const Register: React.FC = () => {
               </div>
             </section>
 
-            {/* ─── SUMBER INFORMASI ─── */}
             <section>
               <SectionTitle number="03" title="Informasi Pendaftaran" />
               <FormSelect
@@ -415,7 +403,6 @@ const Register: React.FC = () => {
               />
             </section>
 
-            {/* ─── DATA ORANG TUA ─── */}
             <section>
               <SectionTitle number="04" title="Data Orang Tua / Wali Murid" />
 
@@ -438,7 +425,6 @@ const Register: React.FC = () => {
               </div>
             </section>
 
-            {/* ─── PETUGAS PENDAFTARAN ─── */}
             <section>
               <SectionTitle number="05" title="Petugas Pendaftaran" />
               <p className="text-sm text-slate-500 mb-4 -mt-2">
@@ -450,7 +436,7 @@ const Register: React.FC = () => {
                   label="Petugas Pendaftaran"
                   name="petugasPendaftaran"
                   value={formData.petugasPendaftaran}
-                  options={['-- Tidak Didampingi Petugas --', ...PETUGAS_OPTIONS]}
+                  options={['-- Tidak Didampingi Petugas --', ...PETUGAS_OPTIONS, 'Yang lain']}
                   onChange={e => {
                     if (e.target.value === 'Yang lain') {
                       setPetugasLain(true);
@@ -475,7 +461,6 @@ const Register: React.FC = () => {
               </div>
             </section>
 
-            {/* Submit */}
             <div className="pt-6 border-t border-slate-200">
               <button
                 type="submit"
@@ -494,8 +479,6 @@ const Register: React.FC = () => {
     </div>
   );
 };
-
-// ─── Sub-components ──────────────────────────────────────────────────────────
 
 const SectionTitle: React.FC<{ number: string; title: string }> = ({ number, title }) => (
   <h3 className="text-lg font-bold text-slate-800 mb-5 flex items-center border-b border-slate-100 pb-3">
